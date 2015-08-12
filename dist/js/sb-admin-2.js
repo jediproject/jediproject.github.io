@@ -14,7 +14,7 @@ $(function () {
 
 */
 $(document).ready(function () {
-
+    $('#content').load('home.html');
     $('#side-menu li a').click(function (event) {
         event.preventDefault();
         $('#content').load($(this).attr('href'));
