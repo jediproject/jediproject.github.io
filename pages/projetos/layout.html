@@ -1,10 +1,267 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Layout</h1>
+            <h1 class="page-header">ng-jedi-layout</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
+
+    <div class="col-lg-12">
+
+
+        <p>Layout components written in angularjs.</p>
+
+        <h3><a id="user-content-install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h3>
+
+        <ul>
+            <li>
+                <p>Install the dependency:</p>
+
+                <div class="highlight highlight-shell"><pre>bower install ng-jedi-layout --save</pre>
+                </div>
+            </li>
+            <li>
+                <p>Add layout.js to your code:</p>
+
+                <div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>assets/libs/ng-jedi-layout/layout.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>assets/libs/ng-jedi-layout/datepicker.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>assets/libs/ng-jedi-layout/input.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>assets/libs/ng-jedi-layout/treeview.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>assets/libs/ng-jedi-layout/modal.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>assets/libs/ng-jedi-layout/panel.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre>
+                </div>
+
+                <ul>
+                    <li>note that the base directory used was assets/libs, you should change bower_components to assets/libs or move from bower_components to assets/libs with grunt.</li>
+                </ul>
+            </li>
+            <li>
+                <p>Include module dependency:</p>
+
+                <div class="highlight highlight-javascript"><pre>angular.<span class="pl-c1">module</span>(<span class="pl-s"><span class="pl-pds">'</span>yourApp<span class="pl-pds">'</span></span>, [<span class="pl-s"><span class="pl-pds">'</span>jedi.layout<span class="pl-pds">'</span></span>]);</pre>
+                </div>
+
+                <h1></h1>
+            </li>
+        </ul>
+
+        <h3><a id="user-content-how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How To Use</h3>
+
+        <ol>
+            <li>
+                <p><strong>Add jd-datepicker directive in your html</strong>
+                </p>
+
+                <ul>
+                    <li>this directive use bootstrap-datetimepicker and integrating its with angularjs</li>
+                </ul>
+
+                <div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">input</span> <span class="pl-e">jd-datepicker</span> <span class="pl-e">jd-min-date</span>=<span class="pl-s"><span class="pl-pds">"</span>myCtrl.myModel.startDate<span class="pl-pds">"</span></span> <span class="pl-e">jd-max-date</span>=<span class="pl-s"><span class="pl-pds">"</span>myCtrl.myModel.endDate<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>myCtrl.myModel.initialDate<span class="pl-pds">"</span></span> /&gt;</pre>
+                </div>
+
+                <ul>
+                    <li>if you need, you can customize the html. In your angular run from app.js, override the constant jedi.layout.datepicker.DatepickerConfig and set your html in template attribute.</li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Add jd-treeview directive in your html</strong>
+                </p>
+
+                <ul>
+                    <li>this directive creates a treeview in your page. The value setted in directive shoud be the levels, separated by ';'. Each level should be passed the description field name. Your model should be similar to a tree. The last level uses the body content. E.g.:</li>
+                </ul>
+
+                <div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">ol</span> <span class="pl-e">jd-treeview</span>=<span class="pl-s"><span class="pl-pds">"</span>level1[level1.fieldLevel1] in myCtrl.myModel.tree; level2[level2.fieldLevel2] in level1.levels2; level3 in level2.levels3<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>checkbox<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>level3.selected<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">span</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;{{level3.fieldLevel3}}&lt;/<span class="pl-ent">span</span>&gt;
+&lt;/<span class="pl-ent">ol</span>&gt;</pre>
+                </div>
+
+                <div class="highlight highlight-javascript"><pre>vm.<span class="pl-c1">myModel</span> <span class="pl-k">=</span> {tree<span class="pl-k">:</span> [
+  {
+     fieldLevel1<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Description level 1<span class="pl-pds">'</span></span>,
+     levels2<span class="pl-k">:</span> [
+        {
+           fieldLevel2<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Description level 2<span class="pl-pds">'</span></span>,
+           levels3<span class="pl-k">:</span> [
+              {
+                 fieldLevel3<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Description level 3<span class="pl-pds">'</span></span>
+              }
+           ]
+        }
+     ]
+  }
+]};</pre>
+                </div>
+
+                <ul>
+                    <li>if you need, you can customize the html. In your angular run from app.js, override the constant jedi.layout.treeview.TreeviewConfig and set your html. There are three attributes:</li>
+                    <li>emptyTpl: define html to write when tree is empty.</li>
+                    <li>nodeTpl: define html to write the intermediate nodes.</li>
+                    <li>lastNodeTpl: define html to write the last node.</li>
+                </ul>
+
+                <div class="highlight highlight-javascript"><pre>app.<span class="pl-c1">run</span>([<span class="pl-s"><span class="pl-pds">'</span>jedi.layout.treeview.TreeviewConfig<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">TreeviewConfig</span>){
+  TreeviewConfig.<span class="pl-c1">emptyTpl</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;div id="emptyTreeElement"&gt;&lt;strong class="text-warning"&gt;&lt;jd-i18n&gt;Nenhum item encontrado.&lt;/jd-i18n&gt;&lt;/strong&gt;&lt;/div&gt;<span class="pl-pds">'</span></span>;
+}]);</pre>
+                </div>
+            </li>
+            <li>
+                <p><strong>Add jd-panel directive in your html</strong>
+                </p>
+
+                <ul>
+                    <li>this directive creates a bootstrap panel with few lines of code. The value setted in directive is the bootstrap col-lg size.</li>
+                </ul>
+
+                <div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">form</span> <span class="pl-e">jd-panel</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">jd-title</span>=<span class="pl-s"><span class="pl-pds">"</span>My Panel<span class="pl-pds">"</span></span>&gt;
+  ...
+&lt;/<span class="pl-ent">form</span>&gt;</pre>
+                </div>
+
+                <ul>
+                    <li>if you need, you can customize the html. In your angular run from app.js, override the constant jedi.layout.panel.PanelConfig and set your html. There are three attributes:</li>
+                    <li>defaultElementClass: default class to apply in your element</li>
+                    <li>defaultFormClass: default class to apply in the forms into your element</li>
+                    <li>wrapSizeTpl: define html to write the div with col-lg if you define size to the panel.</li>
+                    <li>useBoxedPage: define if the panel will be create a div.page wrap</li>
+                    <li>containerFilter: jQuery filter to check if panel parent is a container for then create div.page</li>
+                    <li>boxedPageTpl: define html to write on div.page element.</li>
+                    <li>bodyTpl: define html to write arround of your element.</li>
+                    <li>headerTpl: define html to write in the header panel.</li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Add jd-modal directive in your html</strong>
+                </p>
+
+                <ul>
+                    <li>this directive creates a bootstrap modal panel with few lines of code. The value setted in directive is the bootstrap col-lg size.</li>
+                </ul>
+
+                <div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">form</span> <span class="pl-e">jd-modal</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">jd-title</span>=<span class="pl-s"><span class="pl-pds">"</span>My Modal<span class="pl-pds">"</span></span>&gt;
+  ...
+  &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>modal-footer<span class="pl-pds">"</span></span>&gt;
+     ...
+  &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">form</span>&gt;</pre>
+                </div>
+
+                <ul>
+                    <li>if you need, you can customize the html. In your angular run from app.js, override the constant jedi.layout.modal.ModalConfig and set your html. There are three attributes:</li>
+                    <li>defaultElementClass: default class to apply in your element</li>
+                    <li>defaultFormClass: default class to apply in the forms into your element</li>
+                    <li>defaultTableClass: default class to apply in the tables into your element</li>
+                    <li>headerTpl: define html to write in the header panel.</li>
+                    <li>titleTpl: define html to write the title content.</li>
+                    <li>closeBtnTpl: define html to write the close button content.</li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Add jd-input directive in your html</strong>
+                </p>
+
+                <ul>
+                    <li>this directive apply classes and htmls arround your input to improvement the bootstrap power. The value setted in directive is the bootstrap col-sm size. The directive also add a validation tooltip when there is/are validation error(s) (see ng-jedi-utilities function applyValidationTooltip).</li>
+                </ul>
+
+                <div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">input</span> <span class="pl-e">jd-input</span>=<span class="pl-s"><span class="pl-pds">"</span>5<span class="pl-pds">"</span></span> <span class="pl-e">jd-label-size</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">jd-label</span>=<span class="pl-s"><span class="pl-pds">"</span>My Text<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>myText<span class="pl-pds">"</span></span>&gt;
+
+&lt;<span class="pl-ent">input</span> <span class="pl-e">jd-input</span> <span class="pl-e">jd-label</span>=<span class="pl-s"><span class="pl-pds">"</span>My Check<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>checkbox<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>myCheck<span class="pl-pds">"</span></span>&gt;
+
+&lt;<span class="pl-ent">input</span> <span class="pl-e">jd-input</span> <span class="pl-e">jd-grouplabel</span>=<span class="pl-s"><span class="pl-pds">"</span>My Multi Checks<span class="pl-pds">"</span></span> <span class="pl-e">jd-label</span>=<span class="pl-s"><span class="pl-pds">"</span>{{item.label}}<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>checkbox<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>item.selected<span class="pl-pds">"</span></span> <span class="pl-e">ng-repeat</span>=<span class="pl-s"><span class="pl-pds">"</span>item in items<span class="pl-pds">"</span></span>&gt;
+
+&lt;<span class="pl-ent">input</span> <span class="pl-e">jd-input</span> <span class="pl-e">jd-label</span>=<span class="pl-s"><span class="pl-pds">"</span>My Radio<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>radio<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>myRadio<span class="pl-pds">"</span></span>&gt;
+
+&lt;<span class="pl-ent">input</span> <span class="pl-e">jd-input</span> <span class="pl-e">jd-grouplabel</span>=<span class="pl-s"><span class="pl-pds">"</span>My Multi Radios<span class="pl-pds">"</span></span> <span class="pl-e">jd-label</span>=<span class="pl-s"><span class="pl-pds">"</span>{{item.label}}<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>radio<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>item.selected<span class="pl-pds">"</span></span> <span class="pl-e">ng-repeat</span>=<span class="pl-s"><span class="pl-pds">"</span>item in items<span class="pl-pds">"</span></span>&gt;
+
+&lt;<span class="pl-ent">select</span> <span class="pl-e">jd-input</span> <span class="pl-e">jd-label</span>=<span class="pl-s"><span class="pl-pds">"</span>My Select<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>mySelect<span class="pl-pds">"</span></span>&gt;
+
+&lt;<span class="pl-ent">textarea</span> <span class="pl-e">jd-input</span> <span class="pl-e">jd-label</span>=<span class="pl-s"><span class="pl-pds">"</span>My Textarea<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>myTextarea<span class="pl-pds">"</span></span>&gt;</pre>
+                </div>
+
+                <ul>
+                    <li>in these examples above, the final html will be:</li>
+                </ul>
+
+                <div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form-group<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">label</span> <span class="pl-e">for</span>=<span class="pl-s"><span class="pl-pds">"</span>myText<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>col-sm-1 control-label<span class="pl-pds">"</span></span>&gt;My Text&lt;/<span class="pl-ent">label</span>&gt;
+  &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>col-sm-5<span class="pl-pds">"</span></span>&gt;
+     &lt;<span class="pl-ent">input</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>myText<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>myText<span class="pl-pds">"</span></span>&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;
+
+&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form-group<span class="pl-pds">"</span></span>&gt;
+ &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>col-sm-offset-2 col-sm-10<span class="pl-pds">"</span></span>&gt;
+   &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>checkbox<span class="pl-pds">"</span></span>&gt;
+     &lt;<span class="pl-ent">label</span>&gt;
+       &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>checkbox<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>myCheck<span class="pl-pds">"</span></span>&gt; My Check
+     &lt;/<span class="pl-ent">label</span>&gt;
+   &lt;/<span class="pl-ent">div</span>&gt;
+ &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;
+
+&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form-group<span class="pl-pds">"</span></span>&gt;
+ &lt;<span class="pl-ent">label</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>col-sm-2 control-label<span class="pl-pds">"</span></span>&gt;My Multi Checks&lt;/<span class="pl-ent">label</span>&gt;
+ &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>col-sm-10<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">label</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>checkbox-inline<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>checkbox<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>item1<span class="pl-pds">"</span></span>&gt; Item 1
+    &lt;/<span class="pl-ent">label</span>&gt;
+    &lt;<span class="pl-ent">label</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>checkbox-inline<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>checkbox<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>itemN<span class="pl-pds">"</span></span>&gt; Item N
+    &lt;/<span class="pl-ent">label</span>&gt;
+ &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;
+
+&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form-group<span class="pl-pds">"</span></span>&gt;
+ &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>col-sm-offset-2 col-sm-10<span class="pl-pds">"</span></span>&gt;
+   &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>radio<span class="pl-pds">"</span></span>&gt;
+     &lt;<span class="pl-ent">label</span>&gt;
+       &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>radio<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>myRadio<span class="pl-pds">"</span></span>&gt; My Radio
+     &lt;/<span class="pl-ent">label</span>&gt;
+   &lt;/<span class="pl-ent">div</span>&gt;
+ &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;
+
+&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form-group<span class="pl-pds">"</span></span>&gt;
+ &lt;<span class="pl-ent">label</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>col-sm-2 control-label<span class="pl-pds">"</span></span>&gt;My Multi Radios&lt;/<span class="pl-ent">label</span>&gt;
+ &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>col-sm-10<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">label</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>radio-inline<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>radio<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>item1<span class="pl-pds">"</span></span>&gt; Item 1
+    &lt;/<span class="pl-ent">label</span>&gt;
+    &lt;<span class="pl-ent">label</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>radio-inline<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>radio<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>itemN<span class="pl-pds">"</span></span>&gt; Item N
+    &lt;/<span class="pl-ent">label</span>&gt;
+ &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;
+
+&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form-group<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">label</span> <span class="pl-e">for</span>=<span class="pl-s"><span class="pl-pds">"</span>mySelect<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>col-sm-2 control-label<span class="pl-pds">"</span></span>&gt;My Select&lt;/<span class="pl-ent">label</span>&gt;
+  &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>col-sm-10<span class="pl-pds">"</span></span>&gt;
+     &lt;<span class="pl-ent">select</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>mySelect<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>mySelect<span class="pl-pds">"</span></span>&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;
+
+&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form-group<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">label</span> <span class="pl-e">for</span>=<span class="pl-s"><span class="pl-pds">"</span>myTextarea<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>col-sm-2 control-label<span class="pl-pds">"</span></span>&gt;My Textarea&lt;/<span class="pl-ent">label</span>&gt;
+  &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>col-sm-10<span class="pl-pds">"</span></span>&gt;
+     &lt;<span class="pl-ent">textarea</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>myTextarea<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>myTextarea<span class="pl-pds">"</span></span>&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre>
+                </div>
+
+                <ul>
+                    <li>if you need, you can customize the html. In your angular run from app.js, override the constant jedi.layout.input.InputConfig and set your html. There are three attributes:</li>
+                    <li>useValidationTooltip: define if the input will use the validation tooltip to show erros.</li>
+                    <li>labelTpl: define html to write the label content</li>
+                    <li>selectWrapTpl: define html to write the wrap select content</li>
+                    <li>inputWrapTpl: define html to write the wrap input content</li>
+                    <li>groupWrapTpl: define html to write the wrap group content</li>
+                </ul>
+            </li>
+        </ol>
+
+    </div>
 </div>
 <!-- /.container-fluid -->

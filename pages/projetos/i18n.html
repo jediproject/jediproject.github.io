@@ -1,10 +1,153 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">i18n</h1>
+            <h1 class="page-header">ng-jedi-i18n</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
+    <div class="col-lg-12">
+
+        <p>i18n component written in angularjs</p>
+
+        <h3><a id="user-content-install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h3>
+
+        <ul>
+            <li>
+                <p>Install the dependency:</p>
+
+                <div class="highlight highlight-shell"><pre>bower install ng-jedi-i18n --save</pre>
+                </div>
+            </li>
+            <li>
+                <p>Add i18n.js to your code:</p>
+
+                <div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>assets/libs/ng-jedi-i18n/i18n.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre>
+                </div>
+
+                <ul>
+                    <li>note that the base directory used was assets/libs, you should change bower_components to assets/libs or move from bower_components to assets/libs with grunt.</li>
+                </ul>
+            </li>
+            <li>
+                <p>Include module dependency:</p>
+
+                <div class="highlight highlight-javascript"><pre>angular.<span class="pl-c1">module</span>(<span class="pl-s"><span class="pl-pds">'</span>yourApp<span class="pl-pds">'</span></span>, [<span class="pl-s"><span class="pl-pds">'</span>jedi.i18n<span class="pl-pds">'</span></span>]);</pre>
+                </div>
+            </li>
+            <li>
+                <p>Requirements:</p>
+
+                <ul>
+                    <li>This component uses angular-dynamic-locale to correctly load the $locale after bootstrap.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h1></h1>
+
+        <h3><a id="user-content-how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How To Use</h3>
+
+        <ol>
+            <li>
+                <p><strong>Configuring the default language, supported languages and angular locale path</strong>
+                </p>
+
+                <div class="highlight highlight-javascript"><pre>app.<span class="pl-c1">config</span>([<span class="pl-s"><span class="pl-pds">'</span>jedi.i18n.LocalizeConfig<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">LocalizeConfig</span>){
+ LocalizeConfig.<span class="pl-c1">defaultLanguage</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>en<span class="pl-pds">'</span></span>; <span class="pl-c">// default is en</span>
+ LocalizeConfig.<span class="pl-c1">supportedLanguage</span> <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">'</span>en<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>pt<span class="pl-pds">'</span></span>]; <span class="pl-c">// detault is en and pt</span>
+ LocalizeConfig.<span class="pl-c1">localePath</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>assets/libs/angular-i18n/angular-locale_{{locale}}.js<span class="pl-pds">'</span></span>; <span class="pl-c">// this is the default value</span>
+}]);</pre>
+                </div>
+            </li>
+            <li>
+                <p><strong>Add resources bundle</strong>
+                </p>
+
+                <div class="highlight highlight-javascript"><pre>app.<span class="pl-c1">run</span>([<span class="pl-s"><span class="pl-pds">'</span>jedi.i18n.Localize<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">Localize</span>){
+ Localize.<span class="pl-c1">addResource</span>(<span class="pl-s"><span class="pl-pds">'</span>app/common/i18n/resources_{lang}.json<span class="pl-pds">'</span></span>); <span class="pl-c">// the lang will be replaced with the chosen language</span>
+}]);</pre>
+                </div>
+
+                <ul>
+                    <li>the resources file should be in the format below:</li>
+                </ul>
+
+                <div class="highlight highlight-json"><pre>{
+    <span class="pl-s"><span class="pl-pds">"</span>resources<span class="pl-pds">"</span></span>: {
+        <span class="pl-s"><span class="pl-pds">"</span>back<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Voltar<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>enter<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Entrar<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Nome<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>save<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Salvar<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>password<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Senha<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>user<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Usuário<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>press to save<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Pressione para salvar<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>press button below to save<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Pressione o botão abaixo para salvar<span class="pl-pds">"</span></span>
+    },
+    <span class="pl-s"><span class="pl-pds">"</span>regexResources<span class="pl-pds">"</span></span>: {
+        <span class="pl-s"><span class="pl-pds">"</span>Would you like to add the product (<span class="pl-ii">\w</span>+) to your cart?<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Gostaria de adicionar o produto $1 em seu carrinho de compras?<span class="pl-pds">"</span></span>
+    }
+}</pre>
+                </div>
+
+                <ul>
+                    <li>the keys in resources should be in lower case</li>
+                    <li>the regexResources should be used to store dynamic keys and the resources to store static keys</li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Get and change language</strong>
+                </p>
+
+                <div class="highlight highlight-javascript"><pre>app.<span class="pl-c1">controller</span>([<span class="pl-s"><span class="pl-pds">'</span>jedi.i18n.Localize<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">Localize</span>){
+ ...
+ <span class="pl-k">var</span> lang <span class="pl-k">=</span> Localize.<span class="pl-c1">getLanguage</span>();
+ ...
+ Localize.<span class="pl-c1">setLanguage</span>(<span class="pl-s"><span class="pl-pds">'</span>pt<span class="pl-pds">'</span></span>);
+ ...
+}]);</pre>
+                </div>
+
+                <ul>
+                    <li>if moment.js component is used the method setLanguage will change its locale</li>
+                    <li>if you use angular filters, like date and currency, the $locale will be changed and the format will work</li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Translate</strong>
+                </p>
+
+                <div class="highlight highlight-javascript"><pre>app.<span class="pl-c1">controller</span>([<span class="pl-s"><span class="pl-pds">'</span>jedi.i18n.Localize<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">Localize</span>){
+ ...
+ Localize.<span class="pl-c1">setLanguage</span>(<span class="pl-s"><span class="pl-pds">'</span>pt<span class="pl-pds">'</span></span>);
+ ...
+ <span class="pl-c1">alert</span>(Localize.<span class="pl-c1">get</span>(<span class="pl-s"><span class="pl-pds">'</span>Would you like to add the product iPad in your cart?<span class="pl-pds">'</span></span>)); <span class="pl-c">// it will be displayed "Gostaria de adicionar o produto iPad em seu carrinho de compras?"</span>
+ ...
+}]);</pre>
+                </div>
+
+                <div class="highlight highlight-html"><pre>Like a tag:
+
+&lt;<span class="pl-ent">span</span>&gt;&lt;<span class="pl-ent">jd</span><span class="pl-e">-i18n</span>&gt;press button below to save&lt;/<span class="pl-ent">jd</span><span class="pl-e">-i18n</span>&gt;&lt;/<span class="pl-ent">span</span>&gt;
+
+Or like a attribute:
+
+&lt;<span class="pl-ent">button</span> <span class="pl-e">title</span>=<span class="pl-s"><span class="pl-pds">"</span>Press to save<span class="pl-pds">"</span></span> <span class="pl-e">jd-i18n</span>&gt;Save&lt;/<span class="pl-ent">button</span>&gt;
+
+if language equal 'pt' will be displayed:
+&lt;<span class="pl-ent">button</span> <span class="pl-e">title</span>=<span class="pl-s"><span class="pl-pds">"</span>Pressione para salvar<span class="pl-pds">"</span></span>&gt;Salvar&lt;/<span class="pl-ent">button</span>&gt;
+
+Or like a filter:
+
+&lt;<span class="pl-ent">td</span>&gt;{{value | jdI18n}}&lt;/<span class="pl-ent">td</span>&gt;</pre>
+                </div>
+
+                <ul>
+                    <li>this component replace attributes alt, title, placeholder and text body</li>
+                </ul>
+            </li>
+        </ol>
+
+    </div>
 </div>
 <!-- /.container-fluid -->

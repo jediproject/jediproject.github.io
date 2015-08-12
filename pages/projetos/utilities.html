@@ -1,10 +1,292 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Utilities</h1>
+            <h1 class="page-header">ng-jedi-utilities</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
+
+    <div class="col-lg-12">
+
+
+        <p>Utilities to make life easier on settings and other needs during development with angularjs.</p>
+
+        <h3><a id="user-content-install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h3>
+
+        <ul>
+            <li>
+                <p>Install the dependency:</p>
+
+                <div class="highlight highlight-shell"><pre>bower install ng-jedi-utilities --save</pre>
+                </div>
+            </li>
+            <li>
+                <p>Add utilities.js, utilities-filters.js and utilities-directives.js to your code:</p>
+
+                <div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>assets/libs/ng-jedi-utilities/utilities-filters.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>assets/libs/ng-jedi-utilities/utilities-directives.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>assets/libs/ng-jedi-utilities/utilities.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre>
+                </div>
+
+                <ul>
+                    <li>note that the base directory used was assets/libs, you should change bower_components to assets/libs or move from bower_components to assets/libs with grunt.</li>
+                </ul>
+            </li>
+            <li>
+                <p>Include module dependency:</p>
+
+                <div class="highlight highlight-javascript"><pre>angular.<span class="pl-c1">module</span>(<span class="pl-s"><span class="pl-pds">'</span>yourApp<span class="pl-pds">'</span></span>, [<span class="pl-s"><span class="pl-pds">'</span>jedi.utilities<span class="pl-pds">'</span></span>]);</pre>
+                </div>
+
+                <h1></h1>
+            </li>
+        </ul>
+
+        <h3><a id="user-content-how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How To Use</h3>
+
+        <ol>
+            <li>
+                <p><strong>Functions</strong>
+                </p>
+
+                <ul>
+                    <li>first step: inject jedi.utilities.Utilities in your component so you can use functions below.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <ul>
+            <li>
+                <p>wrapElement(element, content, prepend): element content</p>
+
+                <ul>
+                    <li>this function wraps "element" inside "content". The parameter "prepend" indicate if the element will be placed above or below content's children.</li>
+                </ul>
+
+                <div class="highlight highlight-javascript"><pre>app.<span class="pl-c1">directive</span>(<span class="pl-s"><span class="pl-pds">"</span>yourDirective<span class="pl-pds">"</span></span>, [<span class="pl-s"><span class="pl-pds">'</span>jedi.utilities.Utilities<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">Utilities</span>) {
+  .
+  .
+  <span class="pl-k">var</span> element <span class="pl-k">=</span> $(<span class="pl-s"><span class="pl-pds">'</span>&lt;input&gt;&lt;/input&gt;<span class="pl-pds">'</span></span>);
+  <span class="pl-k">var</span> div <span class="pl-k">=</span> Utilities.<span class="pl-c1">wrap</span>(element, <span class="pl-s"><span class="pl-pds">'</span>&lt;div&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;<span class="pl-pds">'</span></span>, <span class="pl-c1">true</span>);
+  <span class="pl-c">// div = &lt;div&gt;&lt;input&gt;&lt;/input&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;</span>
+  .
+  Or
+  .
+  <span class="pl-k">var</span> element <span class="pl-k">=</span> $(<span class="pl-s"><span class="pl-pds">'</span>&lt;input&gt;&lt;/input&gt;<span class="pl-pds">'</span></span>);
+  <span class="pl-k">var</span> div <span class="pl-k">=</span> Utilities.<span class="pl-c1">wrap</span>(element, <span class="pl-s"><span class="pl-pds">'</span>&lt;div&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;<span class="pl-pds">'</span></span>, <span class="pl-c1">true</span>);
+  <span class="pl-c">// div = &lt;div&gt;&lt;span&gt;&lt;/span&gt;&lt;input&gt;&lt;/input&gt;&lt;/div&gt;</span>
+  .
+  .
+}]);</pre>
+                </div>
+            </li>
+            <li>
+                <p>validateCpf(string): boolean</p>
+
+                <ul>
+                    <li>validate cpf function, return true if it's valid and false if it's invalid</li>
+                </ul>
+            </li>
+            <li>
+                <p>validateCnpj(string): boolean</p>
+
+                <ul>
+                    <li>validate cnpj function, return true if it's valid and false if it's invalid</li>
+                </ul>
+            </li>
+            <li>
+                <p>ngMaskDefaultAlias: object</p>
+
+                <ul>
+                    <li>return the default alias masks from angular-ngMask</li>
+                </ul>
+            </li>
+            <li>
+                <p>enableCors($httpProvider)</p>
+
+                <ul>
+                    <li>configure $httpProvider to enable cors</li>
+                </ul>
+            </li>
+            <li>
+                <p>fixIISHttpHeaders($httpProvider)</p>
+
+                <ul>
+                    <li>configure $httpProvider to fix existent problem in IIS when If-Modified-Since is "0"</li>
+                </ul>
+            </li>
+            <li>
+                <p>configureRestangular(RestangularProvider)</p>
+
+                <ul>
+                    <li>configure Restangular to enable put method and an interceptor to handle binary or paginated response data.</li>
+                </ul>
+            </li>
+            <li>
+                <p>applyExceptionHandler(handler)</p>
+
+                <ul>
+                    <li>set a javascript exception handler with standard messages for some situations. Parameter handler can be used to apply custom messages.</li>
+                </ul>
+            </li>
+            <li>
+                <p>applyModelStateMessages(response, defaultMessage)</p>
+
+                <ul>
+                    <li>this function checks if the response has a model state and apply the field messages, if it exists, or return a message list to show. If it doesn't have a model state return defaultMessage.</li>
+                </ul>
+            </li>
+            <li>
+                <p>getLocalStorage(id)</p>
+
+                <ul>
+                    <li>this function gets the object stored with id</li>
+                </ul>
+            </li>
+            <li>
+                <p>setLocalStorage(id, obj)</p>
+
+                <ul>
+                    <li>this function save the object with id</li>
+                </ul>
+            </li>
+            <li>
+                <p>removeLocalStorage(id)</p>
+
+                <ul>
+                    <li>this function remove the object stored with id</li>
+                </ul>
+            </li>
+        </ul>
+
+        <ol>
+            <li>
+                <p><strong>Directives</strong>
+                </p>
+            </li>
+        </ol>
+
+        <ul>
+            <li>
+                <p>jdSlimScroll</p>
+
+                <ul>
+                    <li>apply jquery slim scroll plugin on element</li>
+                </ul>
+            </li>
+            <li>
+                <p>jdValidateEquals</p>
+
+                <ul>
+                    <li>sets an "equals" valdation between two fields, emit flag "equal" on ngModel</li>
+                </ul>
+
+                <div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">input</span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>password<span class="pl-pds">"</span></span>&gt;
+&lt;<span class="pl-ent">input</span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>confirmPassword<span class="pl-pds">"</span></span> <span class="pl-e">jd-validate-equals</span>=<span class="pl-s"><span class="pl-pds">"</span>password<span class="pl-pds">"</span></span>&gt;</pre>
+                </div>
+            </li>
+            <li>
+                <p>jdFullScreenPage</p>
+
+                <ul>
+                    <li>should be used on first element of a page to show it in full screen. This directive apply body-wide css class on body element.</li>
+                </ul>
+            </li>
+            <li>
+                <p>jdDynamicDirective</p>
+
+                <ul>
+                    <li>this directive can be used to apply another directive dynamically</li>
+                </ul>
+
+                <div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">form</span> <span class="pl-e">jd-dynamic-directive</span>=<span class="pl-s"><span class="pl-pds">"</span>{{myCtrl.myModel.myFlag == true ? 'jd-modal' : 'jd-panel|ng-controller=myCtrl'}}<span class="pl-pds">"</span></span>...</pre>
+                </div>
+            </li>
+            <li>
+                <p>jdInterpolateFormat</p>
+
+                <ul>
+                    <li>this directive can be used to process a dynamic expression using $interpolate</li>
+                </ul>
+            </li>
+            <li>
+                <p>jdAsyncValidate</p>
+
+                <ul>
+                    <li>this directive can be used to apply asynchronous validation, for example if your validation is processed with rest api.</li>
+                </ul>
+
+                <div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">input</span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>cpf<span class="pl-pds">"</span></span> <span class="pl-e">jd-async-validate</span>=<span class="pl-s"><span class="pl-pds">"</span>checkCpf<span class="pl-pds">"</span></span> <span class="pl-e">jd-async-validate-message</span>=<span class="pl-s"><span class="pl-pds">"</span>CPF already used by another user<span class="pl-pds">"</span></span>&gt;</pre>
+                </div>
+
+                <div class="highlight highlight-javascript"><pre>app.<span class="pl-c1">controller</span>(<span class="pl-s"><span class="pl-pds">'</span>yourCtrl<span class="pl-pds">'</span></span>, [<span class="pl-k">function</span>(<span class="pl-smi">$scope</span>, <span class="pl-smi">$http</span>){
+  <span class="pl-c1">$scope</span>.<span class="pl-en">checkCpf</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">modelValue</span>, <span class="pl-smi">viewValue</span>, <span class="pl-smi">resolve</span>, <span class="pl-smi">reject</span>) {
+     $http.<span class="pl-c1">get</span>(<span class="pl-s"><span class="pl-pds">'</span>yourUrl/<span class="pl-pds">'</span></span> <span class="pl-k">+</span> modelValue).<span class="pl-c1">success</span>(<span class="pl-k">function</span>(){
+        <span class="pl-c1">resolve</span>();
+     })<span class="pl-c1">.error</span>(<span class="pl-k">function</span>(){
+        <span class="pl-c1">reject</span>();
+     });
+  }
+}</pre>
+                </div>
+            </li>
+            <li>
+                <p>jdEnter</p>
+
+                <ul>
+                    <li>this directive can be used to run a chosen controller method when the enter key is pressed.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <ol>
+            <li>
+                <p><strong>Filters</strong>
+                </p>
+            </li>
+        </ol>
+
+        <ul>
+            <li>
+                <p>jdSelected:boolFieldName</p>
+
+                <ul>
+                    <li>this filter can be used to select the objects on the given list where the chosen field is true</li>
+                </ul>
+
+                <div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">tr</span> <span class="pl-e">ng-repeat</span>=<span class="pl-s"><span class="pl-pds">"</span>item in items | selected:'boolFieldName'<span class="pl-pds">"</span></span>&gt;</pre>
+                </div>
+
+                <ul>
+                    <li>in this case, only items where 'boolFieldName' is equals to 'true' will be repeated</li>
+                </ul>
+            </li>
+            <li>
+                <p>jdBoolToText</p>
+
+                <ul>
+                    <li>translates boolean to text (Yes/No)</li>
+                </ul>
+            </li>
+            <li>
+                <p>jdTranslate:identifier:value</p>
+
+                <ul>
+                    <li>this filter can be used to translate values, it's similar to oracle translate.</li>
+                </ul>
+
+                <div class="highlight highlight-html"><pre>{{value:translate:1:'Value 1':2:'Value 2'}}</pre>
+                </div>
+            </li>
+            <li>jdCapitalize:text
+
+                <ul>
+                    <li>this filter change the first letter to upper case</li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
 </div>
 <!-- /.container-fluid -->
