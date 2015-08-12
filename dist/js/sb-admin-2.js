@@ -3,13 +3,24 @@ $(function () {
     $('#side-menu').metisMenu();
 
 });
-
+/*
 $(function () {
     $('#side-menu a').on('click', function (e) {
         e.preventDefault();
         var page = $(this).attr('href');
         $('#content').load(page);
     });
+});
+
+*/
+$(document).ready(function () {
+
+    $('#side-menu li a').click(function (event) {
+        event.preventDefault();
+        $('#content').load($(this).attr('href'));
+
+    });
+
 });
 
 //Loads the correct sidebar on window load,

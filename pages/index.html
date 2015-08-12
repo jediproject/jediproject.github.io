@@ -46,26 +46,28 @@
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            
-                <div class="navbar-header">
+
+            <div class="navbar-header">
+                <!--
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-
-<!--
+-->
+                <!--
                     <a class="navbar-brand" href="#">
                         <img alt="" src="https://avatars2.githubusercontent.com/u/13578804?v=3&s=30">
                     </a>
 
 -->
-                    <a class="navbar-brand" href="">Angular Jedi Projetc</a>
+                <a class="navbar-brand" href="">Angular Jedi Projetc</a>
 
 
-                </div>
-          
+
+            </div>
+
             <!-- /.navbar-header -->
 
             <div class="navbar-default sidebar" role="navigation">
@@ -73,50 +75,70 @@
                     <ul class="nav" id="side-menu">
 
                         <li>
-                            <a href=""><i class="fa fa-home fa-fw"></i> Home</a>
+                            <a href="home.html"><i class="fa fa-home fa-fw"></i> Home</a>
                         </li>
 
 
                         <li>
-                            <a href=""><i class="fa fa-files-o fa-fw"></i> Introdução<span class="fa arrow"></span></a>
+                            <a><i class="fa fa-files-o fa-fw"></i> Introdução<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="">Apresentação</a>
+                                    <a href="introducao/apresentacao.html">Apresentação</a>
                                 </li>
                                 <li>
-                                    <a href="">Vídeo</a>
+                                    <a href="introducao/video.html">Vídeo</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
 
                         <li>
-                            <a href=""><i class="fa fa-wrench fa-fw"></i> Setup<span class="fa arrow"></span></a>
+                            <a><i class="fa fa-wrench fa-fw"></i> Setup<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="">Instalação</a>
+                                    <a href="setup/instalacao.html">Instalação</a>
                                 </li>
                                 <li>
-                                    <a href="">Criando uma aplicação</a>
+                                    <a href="setup/criando-aplicacao.html">Criando uma aplicação</a>
                                 </li>
                                 <li>
-                                    <a href="">Criando um controller</a>
+                                    <a href="setup/criando-controller.html">Criando um controller</a>
                                 </li>
                                 <li>
-                                    <a href="">Criando uma feature</a>
+                                    <a href="setup/criando-feature.html">Criando uma feature</a>
                                 </li>
                                 <li>
-                                    <a href=""> Criando um modal</a>
+                                    <a href="setup/criando-modal.html"> Criando um modal</a>
                                 </li>
                                 <li>
-                                    <a href="">Criando um module</a>
+                                    <a href="setup/criando-module.html">Criando um module</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
 
                         <li>
-                            <a href=""><i class="fa fa-user fa-fw"></i> Time</a>
+                            <a><i class= "fa fa-th-list fa-fw"></i> Projetos<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="projetos/generator-ng-jedi-ref-arch.html">generator-ng-jedi-ref-arch</a>
+                                    <a href="projetos/ref-arch.html">ref-arch</a>
+                                    <a href="projetos/i18n.html">i18n</a>
+                                    <a href="projetos/breadcrumb.html">breadcrumb</a>
+                                    <a href="projetos/loading.html">loading</a>
+                                    <a href="projetos/factory.html">factory</a>
+                                    <a href="projetos/layout.html">layout</a>
+                                    <a href="projetos/utilities.html">utilities</a>
+                                    <a href="projetos/dialogs.html">dialogs</a>
+                                    <a href="projetos/ng-jedi.github.io.html">ng-jedi.github.io</a>
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                        <li>
+                            <a href="time.html"><i class="fa fa-user fa-fw"></i> Time</a>
                         </li>
 
 
@@ -130,24 +152,28 @@
 
 
         <div id="page-wrapper">
+            <div id="content" </div>
+
+
+            </div>
+            <!-- /#page-wrapper -->
 
         </div>
-        <!-- /#page-wrapper -->
+        <!-- /#wrapper -->
 
-    </div>
-    <!-- /#wrapper -->
+        <!-- jQuery -->
+        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
-    <!-- jQuery -->
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+        <!-- Custom Theme JavaScript -->
+        <script src="../dist/js/sb-admin-2.js"></script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+
 
 </body>
 
