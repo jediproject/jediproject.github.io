@@ -1,0 +1,23 @@
+.img-circle {
+    border-radius: 50%;
+}
+
+.align-team-info{
+	margin-left: -45px;
+}
+
+.member-name {
+    margin-top: 4px;
+    color: #333;
+}
+
+.member-email{
+	font-weight: normal;
+    color: #767676;
+}
+
+.member-github{
+	color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
