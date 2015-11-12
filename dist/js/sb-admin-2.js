@@ -15,12 +15,17 @@ $(function () {
 */
 $(document).ready(function () {
     $('#content').load('home.html');
-    $('#side-menu li a:not(.md)').click(function (event) {
+    $('#side-menu li a').click(function (event) {
         event.preventDefault();
-        $('#content').load($(this).attr('href'));
-
+        if ($(this).is('.md')) {
+            var URL = 'https://raw.githubusercontent.com/jediproject/'+$(this).attr('href')+'/master/README.md';
+            $.get(URL, function(content) {
+                $('#content').empty().append($('<div class="container-fluid"></div>').html(marked(content)));
+            });
+        } else {
+            $('#content').load($(this).attr('href'));
+        }
     });
-
 });
 
 //Loads the correct sidebar on window load,
