@@ -30,12 +30,14 @@ function openLink(event) {
                     var contentBody = $(content).filter('#contents');
                     if (contentBody.length > 0) {
                         $('#content').empty().append($('<div class="container-fluid"></div>').append(contentBody));
-                        // qualquer link para componentes jedi serão abertos pelo openLink
-                        contentBody.find("a[href*='jedi']").addClass('ajax').click(openLink).each(function(){
-                            this.href = this.href.substring(this.href.indexOf('https://github'), this.href.indexOf('&'));
-                        });
                     }
                 }
+                // qualquer link para componentes jedi serão abertos pelo openLink
+                $('#content').find("a[href*='jedi']").addClass('ajax').click(openLink).each(function(){
+                    if (this.href.indexOf('&') > -1) {
+                        this.href = this.href.substring(this.href.indexOf('https://github'), this.href.indexOf('&'));
+                    }
+                });
             });
         } else {
             $('#content').load(href);
