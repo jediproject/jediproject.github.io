@@ -13,19 +13,39 @@ $(function () {
 });
 
 */
-$(document).ready(function () {
-    $('#content').load('home.html');
-    $('#side-menu li a').click(function (event) {
-        event.preventDefault();
-        if ($(this).is('.md')) {
-            var URL = 'https://raw.githubusercontent.com/jediproject/'+$(this).attr('href')+'/master/README.md';
+function openLink(event) {
+    event.preventDefault();
+    var href = $(this).attr('href');
+    if (href) {
+        if ($(this).is('.ajax')) {
+            var URL = href;
+            if (URL.indexOf('http') != 0 || URL.indexOf('https://github.com/jediproject/') == 0) {
+                URL = 'https://raw.githubusercontent.com/jediproject/'+href.replace('https://github.com/jediproject/', '')+'/master/README.md';
+            }
             $.get(URL, function(content) {
-                $('#content').empty().append($('<div class="container-fluid"></div>').html(marked(content)));
+                // se url for modificada é pq é um .md
+                if (URL != href) {
+                    $('#content').empty().append($('<div class="container-fluid"></div>').html(marked(content)));
+                } else {
+                    var contentBody = $(content).filter('#contents');
+                    if (contentBody.length > 0) {
+                        $('#content').empty().append($('<div class="container-fluid"></div>').append(contentBody));
+                        // qualquer link para componentes jedi serão abertos pelo openLink
+                        contentBody.find("a[href*='jedi']").addClass('ajax').click(openLink).each(function(){
+                            this.href = this.href.substring(this.href.indexOf('https://github'), this.href.indexOf('&'));
+                        });
+                    }
+                }
             });
         } else {
-            $('#content').load($(this).attr('href'));
+            $('#content').load(href);
         }
-    });
+    }
+}
+
+$(document).ready(function () {
+    $('#content').load('home.html');
+    $('#side-menu li a').click(openLink);
 });
 
 //Loads the correct sidebar on window load,
