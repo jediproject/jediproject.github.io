@@ -18,12 +18,12 @@
 1. [Patterns and Restrictions](#Patterns-and-Restrictions)
     1. [General](#General)
     1. [Controllers](#Controllers)
-    1. [Services](#Servies)
+    1. [Services](#Services)
     1. [Views](#Views)
     1. [Directives](#Directives)
     1. [Filters](#Filters)
 1. [Recommended Tools](#Recommended-Tools)
-    1. [Dependency Management - Bower vs NPM](#Dependency-Management)
+    1. [Dependency Management - Bower vs npm](#Dependency-Management)
     1. [Build and Deploy](#Build-and-Deploy)
     1. [Automated Tests](#Automated-Tests)
     1. [Code Generation](#Code-Generation)
@@ -35,7 +35,7 @@
 
 Provide guidance and recommendations on the tools, best practices, standards, constraints and solution design that can/should be used to develop an application SPA (Single Page Application) with angularjs.
 
-##Foundations
+##<a name="Foundations"></a>Foundations
 
 * Promoting productivity for projects
 * Standardize SPA applications
@@ -43,9 +43,9 @@ Provide guidance and recommendations on the tools, best practices, standards, co
 * Adoption of standards and market practices
 
 ##<a name="Target"></a>Target
-Mainly applications with angularjs SPA, since it is more widespread, stable and evolving. Presented techniques can mostly be adopted in other frameworks SPA or even Web applications.
+Mainly applications with AngularJS SPA, since it is more widespread, stable and evolving. Presented techniques can mostly be adopted in other frameworks SPA or even Web applications.
 
-##Overview
+##<a name="Overview"></a>Overview
 
 ###<a name="Traditional-Model"></a>Traditional Model
 
@@ -53,20 +53,20 @@ Mainly applications with angularjs SPA, since it is more widespread, stable and
 
 In this traditional model the navigation between pages, occurred in the browser, request or send data waiting to return a new HTML to be rendered on top of the current page, even in situations where the request to stay on the same page. Usually this HTML is prepared dynamically in the web application server.
 
-Frameworks like JSF, Spring MVC, ASP.NET MVC, django, Play, Rails, among others, implement this building model.
+Frameworks like JSF, Spring MVC, ASP.NET MVC, django, Play, Rails, among others, use this building model.
 
 ###<a name="SPA-Model"></a>SPA Model
 
 ![SPAModel](../dist/img/SPAModel.png)
 
-In the SPA model, the HTML page requests are smaller, are held when have a page change, though it is returned static HTMLs unprepared adds the application server. Data is exchanged (sent or received from the server) through AJAX requests in REST APIs, traveling data in JSON or XML format.
+In the SPA model, the HTML page requests are smaller, are held when have a page change, though is returned static HTMLs unprepared adds the application server. Data is exchanged (sent or received from the server) through AJAX requests in REST APIs in JSON or XML format.
 
 This model basically consists of three core technologies:
 * HTML: pages or page fragment
 * JavaScript: controllers and other programmatic resources
 * CSS: visual stylesheet
 
-There are some frameworks that implement this model (Ember, knockout, Backbone.js, etc), but recommended, as stated above, is to use AngularJS.
+There are some frameworks that implements this model (Ember, knockout, Backbone.js, etc), but recommended, as stated above, is to use AngularJS.
 
 ##<a name="Logic-View"></a>Logic View
 
@@ -74,11 +74,11 @@ There are some frameworks that implement this model (Ember, knockout, Backbone.j
 
 In SPA applications the recommendation is the adoption of the above model, basically adopt the MVC pattern on the client side, separating and organizing code responsibility.
 
-Angularjs already directs the construction for this MVC pattern and has components acting types in each of these layers.
+AngularJS already directs the construction for this MVC pattern and has components acting types in each of these layers.
 
 ###<a name="Views"></a>Views
 
-Layer where we will have the implementation of the canvas and visual components. In this layer we find the following AgularJS components/resources:
+Layer where is the implementation of the canvas and visual components. In this layer we find the following AngularJS components/resources:
 
 * HTML/Templates
 * Data Binds
@@ -87,13 +87,13 @@ Layer where we will have the implementation of the canvas and visual components.
 
 ###<a name="Controllers"></a>Controllers
 
-Layer where we will have the implementation of flow controllers and navigation between screens. In this layer we find the following AngularJS components/resources:
+Layer where is the implementation of flow controllers and navigation between screens. In this layer we find the following AngularJS components/resources:
 
 * Controller
 * Router and Location
 
 ###<a name="Services"></a>Services
-Layer where we will have the implementation of services, with business rules (when there is no backend) or calls to the backend. In this layer we find the following AngularJS components/resources:
+Layer where is the implementation of services, with business rules (when there is no backend) or calls to the backend. In this layer we find the following AngularJS components/resources:
 
 * Service
 * Factory
@@ -163,9 +163,9 @@ app\[module]\features\[submodule*]\[feature]\[feature]\view\*.html --> if more t
 ```
 
 In this template, it is proposed to separate reusable components of functional pages. Understood as components those common features or reusable mechanisms (directives, filters, interceptors in AngularJS)... Features, instead, would be the functional pages, where we have the HTML that makes up the whole page and its controller (and other pages specific resources).
-Recomenda-se que arquivos e pastas sempre em minúsculo. Para scripts .js utilizar sempre o sufixo que indique seu tipo, ex: myprofile-ctrl.js, myprofile-service.js, myprofile-directive.js, etc.
+The naming convention for folders and files is to use always lowercase. For js files you should always use the sulfix that indicate his type ex: myprofile-ctrl.js, myprofile-service.js, myprofile-directive.js, etc.
 
-For components written in angularjs, it is recommended that the name has concatenation module and submodule, such as a package / namespace to prevent overlapping component names in different modules.
+For components written in AngularJS, is recommended that the name has concatenation module and submodule, such as a package / namespace to prevent overlapping component names in different modules.
 
 ##<a name="Patterns-and-Restrictions"></a>Patterns and Restrictions
 
@@ -183,7 +183,7 @@ For components written in angularjs, it is recommended that the name has concate
         return factory();
     }
 }(function() {
-    … código do componente
+    // ...component code
 }));
 ```
 
@@ -225,9 +225,9 @@ app.[module].[submodule].[feature*].[component]
 //e.g.: app.security.auth.userprofile.UserProfileCtrl
 ```
 
-1. Always declare **'use strict';** at beggining of a js file
+1. Always declare **'use strict';** at beginning of a js file
 
-1. Names, folders and files aways shoud use lowercase.
+1. Names, folders and files aways should use lowercase.
 
 1. Every AngularJS component should have the dependencies injected by name, avoid declare just the component constructor, since the minification will shorten the parameters names.
 
@@ -241,12 +241,12 @@ AlertHelper.addInfo(“Message”);
 
 1. Every AngularJS script should be loaded by [module]-app.js of his module.
 
-1. API's request exception should be treated by interceptors available at [$httpProvider.interceptors](https://docs.angularjs.org/api/ng/service/$http#interceptors) component. Exceptions involving Javascript failures should utilize [$exceptionHandler](https://docs.angularjs.org/api/ng/service/$exceptionHandler).
+1. API's request exception should be treated by interceptors available at [$httpProvider.interceptors](https://docs.angularjs.org/api/ng/service/$http#interceptors) component. Exceptions involving javascript failures should utilize [$exceptionHandler](https://docs.angularjs.org/api/ng/service/$exceptionHandler).
 
 ###<a name="Controllers"></a>Controllers
 
 1. Naming conventions:
-  1. Fisical folder: app\[**module**]\features\[**submodule\***]\[**feature**]\[**feature**]-ctrl.js
+  1. Physical folder: app\[**module**]\features\[**submodule\***]\[**feature**]\[**feature**]-ctrl.js
   1. Controller names: app.[**module**].[**submodule\***].[**feature**].[**feature**]Ctrl
   1. Model: [**feature**]Model
   
@@ -284,51 +284,53 @@ AlertHelper.addInfo(“Message”);
   - Methods declarations and his statements
 ```javascript
  function loadSystems(success) {
-        console.log('Recuperando systems');
+        console.log('Recovering systems');
         SecurityRestService.all('admin/system').getList().then(success);
 }
 ```
 
-1. Não deve haver regra de negócio nos controllers, o mesmo deverá estar presente no escopo das APIs apenas.
-1. Não chamar APIs diretamente nos controllers, em vez disso consumí-los pela camada de serviço.
-1. Serviços não devem ser expostos no vm nem em nenhum outro atributo, devem sempre passar por métodos do controller.
-1. Todos os atributos da tela relacionados ao modelo devem ser declarados no vm.[feature]Model, ex:
+1. Controllers should not have business rules, it should be created only in API's scope.
+1. Controllers should not make direct API's calls, instead it should call by the service layer.
+1. Services should not be exposed by vm or other attribute, it always should pass through controller methods.
+1. All page attributes related to the model should be declared in the *vm.[**feature**]Model*, ex:
 ```javascript
 vm.featureModel = { name: null };
 ```
-1. Atributos de controle deverão ser declarados na raiz do vm, ex:
+1. Controller attributes should be declared in the root of the vm, ex:
 ```javascript
 vm.pageSize = 10;
 ```
 
 ###<a name="Services"></a>Services
 
-1. Nomenclatura:
-  - Pasta física: app\[**module**]\features\[**submodule\***]\[**feature**]\[**feature**]-service.js
-  - Nome Controller: app.[**module**].[**submodule\***].[**feature**].[**feature**]Service
-1. Opte por service (caso seja serviços simples) ou provider (caso seja serviço que exija algum tipo de configuração prévia).
-1. Caso o serviço seja apenas para abstrair o acesso às APIs, opte por [$resources](https://docs.angularjs.org/api/ngResource/service/%24resource)ou [Restangular](https://github.com/mgonto/restangular), ambos abstraem as operações de CRUD nas instancias dos objetos json. Com Restangular pode-se inclusive chama-lo diretamente no controller em vez de criar uma camada adicional, no componente [ng-jedi-factory](https://github.com/jediproject/ng-jedi-factory) esta é a abordagem utilizada, podendo-se injetar um Restangular service com os apontamentos de URL pre-configurados.
-1. São componentes singleton, portanto evite variáveis de negócio que possam se sobrepor em fluxos paralelos.
+1. Naming conventions:
+  - Physical Folder: app\[**module**]\features\[**submodule\***]\[**feature**]\[**feature**]-service.js
+  - Controller name: app.[**module**].[**submodule\***].[**feature**].[**feature**]Service
+1. Opt for service (if it is simple services) or provider (if it is a service that require a previous configuration).
+1. If the service is only for abstract the API calls, use [$resources](https://docs.angularjs.org/api/ngResource/service/%24resource)ou [Restangular](https://github.com/mgonto/restangular), both abstract the CRUD operations in json object instances. With Restangular we can even call direct by controller instead of create an additional call, this approach is used in component [ng-jedi-factory](https://github.com/jediproject/ng-jedi-factory), allowing injection of a Restangular service for pre-defined URL references.
+1. Are singleton components, so avoid use business variables that could overlap in parallel streams.
 
 ###<a name="Views"></a>Views
 
-1. Nomenclatura:
-  - Pasta física: app\[**module**]\features\[**submodule\***]\[**feature**]\
-  - Nome página: [**feature**].html
-1. Sempre construído com html puro, com estrutura e css preferencialmente utilizando [Twitter Bootstrap](http://getbootstrap.com/), sem javascript e usando apenas diretivas angular
-1. ng-repeat deve sempre ser declarado com [track by](http://www.bennadel.com/blog/2556-using-track-by-with-ngrepeat-in-angularjs-1-2.htm), para evitar problemas de performance
-1. Se preferir, usar a diretiva [jd-input](https://github.com/jediproject/ng-jedi-layout#jdinput) em todos os campos, para mantê-los todos no mesmo padrão visual e ganhar produtividade escrevendo menos html
-1. Se preferir, usar por padrão grids com a diretiva jd-table com paginação via api
-1. Na declaração do controller da tela, usar alias em formato camelCase para o nome, ex:
+1. Naming conventions:
+  - Physical folder: app\[**module**]\features\[**submodule\***]\[**feature**]\
+  - Page name: [**feature**].html
+1. Always built with standard HTML, with structure and css preferentially using [Twitter Bootstrap](http://getbootstrap.com/), without javascript and using only AngularJS directives
+1. ng-repeat should always be declared using [track by](http://www.bennadel.com/blog/2556-using-track-by-with-ngrepeat-in-angularjs-1-2.htm), to avoid performance issues.
+1. If you prefer, use the directive [jd-input](https://github.com/jediproject/ng-jedi-layout#jdinput) in all fields to keep the standard appearence and avoid write too much html.
+1. If you prefer, you can use default grids with the directive jd-table with API pagination.
+1. At page controller declaration, use alias in camelCase for the name, ex:
 ```javascript
 ng-controller="app.framework.imports.importfiles.ImportFilesCtrl as importFilesCtrl"
 ```
-1. Não declarar styles nos elementos html, usar classes css do projeto
-1. Se necessário aplicar internalizalização, opte por usar a diretiva jd-i18n em todos os textos do html
-  - <jd-i18n>Texto qualquer<jd-i18n>
-  - ou <a jd-i18n>Texto qualquer<\a>
-1. Css devem ser codificados/customizados apenas no arquivo **assets\css\app.css** , demais são de terceiros. Utilizar processador [SASS](http://sass-lang.com/) para geração deste css customizado.
-1. Navegação entre páginas deverá ser feito utilizando componente [ngRoute](https://docs.angularjs.org/api/ngRoute)
+1. Do not declare styles inside HTML elements, always use project CSS classes.
+1. If it's necessary apply internationalization, use the jd-i18n directive in all HTML text elements
+  ```
+  <jd-i18n>Some text<jd-i18n>
+  or <a jd-i18n>Some text<\a>
+  ```
+1. Css should be created/customized only in **assets\css\app.css** file, other css are third-party. Use the processor [SASS](http://sass-lang.com/) to generate a custom css.
+1. Navigation between pages should use [ngRoute](https://docs.angularjs.org/api/ngRoute) component.
 
 ###<a name="Directives"></a>Directives
 
