@@ -13,7 +13,6 @@
 ###Initial Configs
 
 * CORS + Headers + Restangular
-
 ```javascript
     app.config(['$routeProvider', '$httpProvider', 'RestangularProvider', 'jedi.utilities.UtilitiesProvider',  function ($routeProvider, $httpProvider, RestangularProvider,  Utilities) {
     //...
@@ -32,7 +31,6 @@
 ```
 
 * Routes
-
 ```javascript
     var $routeProviderReference;
 
@@ -82,13 +80,11 @@
 * Including new dependencies:
 
     * Install or download them to your machine using whatever you see fit. You can try using bower, e.g:
-
 ```shell
     bower install package-name --save
 ```
 
     * Add the path to the desired files to **assetsfiles.json**, specifying source ("*src*") and destination ("*dest*"). Source is the file you want to include in your project, and destination is where in your project should grunt copy that file to, e.g:
-
 ```json
     {
             "files": [
@@ -105,7 +101,6 @@
 ```
     
     * Then include these deps in the new module on your Angular app. Open the **main.tpl.js** and do like in the following example:
-    
 ```javascript
     "use strict";
 
@@ -151,7 +146,6 @@
 ###CRUD
 
 * Controller
-
 ```javascript
     /*
         Your first page controller.
@@ -241,7 +235,6 @@
 ```
 
 * View
-
 ```html
 <form jd-panel jd-title="YourFeature" ng-controller="app.yourSystem.yourModule.yourFeature.YourFeature as yourFeatureCtrl">
 
@@ -281,7 +274,6 @@
 ```
 
 ###Creating Services
-
 ```javascript
 jd.factory.newService("yourService", 'api/myAction/:userId', {'get': {method: 'GET'}}, {itemId:'@id'});
 
@@ -293,14 +285,12 @@ app.controller(['yourService', function (yourService) {
 ```
 
 ###Creating Modals
-
 ```javascript
 jd.factory.newModal("yourModalDirective", 'app/view/yourModal.html', 'yourModalCtrl', ['myService', ['param1', 'param2'], function (myService, param1, param2) {
   	// your controller body
  	// we recommend writing the controller using the vm pattern
 }], {size: 'lg'});
 ```
-
 ```html
 <!-- using 'yourModalDirective'-->
 <button your-modal-directive></button>
@@ -321,7 +311,6 @@ jd.factory.newDirective("yourDirective", [function () {
 ```
 
 ###Creating Filters
-
 ```javascript
 jd.factory.newFilter('yourFilter', [function () {
   return function (values) {
@@ -339,7 +328,6 @@ jd.factory.newFilter('yourFilter', [function () {
 * See [this](http://getbootstrap.com/css/#grid) to read more about bootstrap's space organization and display sizes.
 
 * Always use a **form** element as the root element (or the main element) of your current view. Use the directives **jd-panel** (to regular pages) or **jd-modal**. E.g:
-
 ```html
 <form jd-panel jd-title="TÍTULO" ng-controller="ControllerName as controllerAlias">
 ```
@@ -347,7 +335,6 @@ jd.factory.newFilter('yourFilter', [function () {
 Tip: modals don't need the ng-controller directive.
 
 * Always use at least one row to organize things inside the **form**:
-
 ```html
 <form ...>
    <div class="row">
@@ -357,7 +344,6 @@ Tip: modals don't need the ng-controller directive.
 ```
 
 * Info or selection views should always wrap fields and buttons in a **jd-panel** having "Filters" as a standard title and with the **jd-toggle** attribute. Also use the **jd-panel** to separate the view in different contexts. E.g:
-
 ```html
 <form ...>
    <div class="row">
@@ -379,7 +365,6 @@ Tip: modals don't need the ng-controller directive.
 ``` 
 
 * Buttons should always be at the bottom of the context, using class *btn* inside a div.row and a div.col:
-
 ```html
 <form ...>
     ...
@@ -398,7 +383,6 @@ Tip: The button with the main action on a page should have the *btn-primary* cla
 * Grids should use the **jd-table** directive
     
     * When using grids to display data as a result of something (a search result, maybe) use a **jd-panel** and **jd-toggle** to form a context for the grid:
-
 ```html
 <form ...>
    <div jd-panel="Results" jd-toggle>
@@ -410,7 +394,6 @@ Tip: The button with the main action on a page should have the *btn-primary* cla
 ```
 
     * If the grid is already part of any existent context or view it should be in div.col-xs-12 inside a div.row, like this:
-
 ```html
 <form ...>
    <div class="row">
@@ -424,7 +407,6 @@ Tip: The button with the main action on a page should have the *btn-primary* cla
 ```
 
 * A textarea, a group of checkboxes or a group of radio buttons should each use one entire line (or row), being inside a div.row and having size 12 as follow:
-
 ```html
 <form ...>
    ...
@@ -438,7 +420,6 @@ Tip: The button with the main action on a page should have the *btn-primary* cla
 ```
 
 * To create multiple contexts side by side use a div with **jd-panel** inside a div.col with the size of each area and inside a div.row:
-
 ```html
 <form ...>
    ...
@@ -456,7 +437,6 @@ Tip: The button with the main action on a page should have the *btn-primary* cla
 ```
 
 * Use div.row to explicitly organize the view having specific fields or elements in diferent lines:
-
 ```html
 <form ...>
    <div class="row">
@@ -477,7 +457,6 @@ Tip: The button with the main action on a page should have the *btn-primary* cla
 ```
 
 * Help or info texts should use the *small* html element with the *help-block* class. Or combine it in a **jd-input** field using the **jd-help** attribute.
-
 ```html
 <form ...>
    ...
@@ -498,7 +477,6 @@ Tip: The button with the main action on a page should have the *btn-primary* cla
 ```
 
 * You can combine fields with buttons (like a selecting or cleaning button for a input field) should use the following structure:
-
 ```html
 <div jd-input jd-label="LABEL" jd-element-class="input-group">
 	<input jd-validation-tooltip class="form-control" required type="text" ...>
