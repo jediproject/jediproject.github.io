@@ -1,61 +1,61 @@
  
 #AngularJs Reference Architecture
 
-1. [Objetivo](#Objetivo)
-1. [Princípios](#Princípios)
-1. [Público Alvo](#Público-Alvo)
-1. [Visão geral](#Visão-Geral)
-    1. [Modelo Tradicional](#Modelo-Tradicional)
-    1. [Modelo SPA](#Modelo-SPA)
-1. [Visão Lógica](#Visão-Lógica)
+1. [Goals](#Goals)
+1. [Foundations](#Foundations)
+1. [Target](#Target)
+1. [Overview](#Overview)
+    1. [Traditional Model](#Traditional-Model)
+    1. [SPA Model](#SPA-Model)
+1. [Logic View](#Logic-View)
     1. [Views](#Views)
     1. [Controllers](#Controllers)
     1. [Services](#Services)
-1. [Organização do Código](#Organização-do-Código)
-    1. [Recursos gerais](#Recursos-gerais)
-    1. [Estrutura do Foundation](#Estrutura-do-Foundation)
-    1. [Estrutura por Módulo](#Estrutura-por-Módulo)
-1. [Padrões e Restrições](#Padrões-e-Restrições)
-    1. [Gerais](#Gerais)
+1. [Code Structure](#Code-Structure)
+    1. [General Resources](#General-Resources)
+    1. [Foundation Structure](#Foundation-Structure)
+    1. [Module Structure](#Module-Structure)
+1. [Patterns and Restrictions](#Patterns-and-Restrictions)
+    1. [General](#General)
     1. [Controllers](#Controllers)
     1. [Services](#Servies)
     1. [Views](#Views)
     1. [Directives](#Directives)
     1. [Filters](#Filters)
-1. [Ferramentas Recomendadas](#Ferramentas-Recomendadas)
-    1. [Gestão de Dependências - Bower vs NPM](#Gestão-de-Dependências---Bower-vs-NPM)
+1. [Recommended Tools](#Recommended-Tools)
+    1. [Dependency Management - Bower vs NPM](#Dependency-Management---Bower-vs-NPM)
     1. [Build e Deploy](#Build-e-Deploy)
-    1. [Testes Automatizados](#Testes-Automatizados)
-    1. [Geração de Código](#Geração-de-Código)
+    1. [Automated Tests](#Automated-Tests)
+    1. [Code Generation](#Code-Generation)
     1. [Mocks](#Mocks)
     1. [Debugging](#Debugging)
-1. [Componentes](#Componentes)
+1. [Components](#Components)
 
-##Objetivo
+##<a name="Goals"></a>Goals
 
-Fornecer orientações e recomendações quanto ao ferramental, boas práticas, padrões, restrições e desenho de solução que podem/devem ser usado para desenvolver uma aplicação SPA (Single Page Application) com AngularJs.
+Provide guidance and recommendations on the tools, best practices, standards, constraints and solution design that can/should be used to develop an application SPA (Single Page Application) with angularjs.
 
-##Princípios
+##Foundations
 
-* Promover produtividade para os projetos
-* Padronizar e direcionar aplicações SPA
-* Facilitar a capacitação dos times
-* Adoção de padrões e práticas de mercado
+* Promoting productivity for projects
+* Standardize SPA applications
+* Facilitate the training of teams
+* Adoption of standards and market practices
 
-##Público Alvo
-Principalmente aplicações SPA com AngularJs, por ser mais difundido, estável e em evolução contínua. Várias técnicas apresentadas podem ser adotadas em outros frameworks SPA ou mesmo em aplicações Web.
+##Target
+Mainly applications with angularjs SPA, since it is more widespread, stable and evolving. Presented techniques can mostly be adopted in other frameworks SPA or even Web applications.
 
-##Visão geral
+##Overview
 
-###Modelo Tradicional
+###Traditional Model
 
 ![Communication](../dist/img/Communication.png)
 
-Neste modelo tradicional a navegação entre páginas, ocorridas no browser, requisitam ou enviam dados esperando como retorno um novo HTML para ser renderizado por cima da página atual, mesmo em situações onde a requisição fique na mesma página. Geralmente este HTML é preparado de forma dinâmica no servidor de aplicações web.
+In this traditional model the navigation between pages, occurred in the browser, request or send data waiting to return a new HTML to be rendered on top of the current page, even in situations where the request to stay on the same page. Usually this HTML is prepared dynamically in the web application server.
 
-Frameworks como JSF, Spring MVC, ASP.NET MVC, django, Play, Rails, dentre outros, implementam este modelo de construção.
+Frameworks like JSF, Spring MVC, ASP.NET MVC, django, Play, Rails, among others, implement this building model.
 
-###Modelo SPA
+###SPA Model
 
 ![SPAModel](../dist/img/SPAModel.png)
 
@@ -68,7 +68,7 @@ Este modelo é composto por basicamente 3 tecnologias base:
 
 Existem alguns frameworks que implementam este modelo (Ember, knockout, backbone.js, etc), porém o recomendado, como já dito acima, é utilizar AngularJs.
 
-##Visão Lógica
+##Logic View
 
 ![LogicStructure](../dist/img/LogicStructure.png)
 
@@ -99,13 +99,13 @@ Camada onde teremos a implementação dos serviços, com regras de negócio (qua
 * Factory
 * Provider
 
-##Organização do Código
+##Code Structure
 
 Segue abaixo a organização base proposta para projetos SPA, baseado em padrões de mercado e evoluído com incremento de algumas divisões pontuais.
 
 Referência base: https://scotch.io/tutorials/angularjs-best-practices-directory-structure
 
-###Recursos gerais
+###General Resources
 
 ```
 assets --> componentes externos ou implementaçao de código não vinculado ao SPA
@@ -119,7 +119,7 @@ assets\js --> js não angular customizados ou criados no projeto
 
 Esta estruturação é utilizada por vários componentes de mercado, por exemplo, o Twitter Bootstrap utiliza estes caminhos de pastas em seus CSS, para obter imagens, fontes, etc.
 
-###Estrutura do Foundation
+###Foundation Structure
 
 ```
 app --> componentes da aplicação SPA
@@ -142,7 +142,7 @@ app\common\features\auth\signup --> telas de cadastro do usuário
 	Rota: /common/auth/signup
 ```
 
-###Estrutura por Módulo
+###Module Structure
 
 ```
 app\[module]
@@ -168,9 +168,9 @@ Recomenda-se que arquivos e pastas sempre em minúsculo. Para scripts .js utiliz
 
 Para componentes escritos em AngularJs, é recomendado que o nome possua a concatenação do módulo e submódulo, como um package/namespace, para evitar sobreposição de nomes de componentes em distintos módulos.
 
-##Padrões e Restrições
+##Patterns and Restrictions
 
-###Gerais
+###General
 1. Sempre codificar os scripts para suportar requirejs, module do nodejs ou inclusão diretamente no index.html. Ex.:
 ```javascript
 (function (factory) {
@@ -355,11 +355,11 @@ ng-controller="app.framework.imports.importfiles.ImportFilesCtrl as importFilesC
     - Nome diretiva: app[**Module**][**Submodule\***][**Feature**][**Filter**]
 1. Evitar filters aninhados pois pode acarretar em problemas de performance.
 
-## Ferramentas Recomendadas
+##Recommended Tools
 
-### Gestão de Dependências - Bower vs NPM
+###Dependency Management - Bower vs NPM
 
-1. [NPM](https://www.npmjs.com/)éutilizado para o gerenciamento de módulos em Node.js, destinado a gestão de ferramentas utilizadas como suporte e automação do desenvolvimento(builds, geração de código, tasks e afins). Assim como é capaz de gerenciar componentes de front-end quando utilizado em conjunto com o [Browserify](http://browserify.org/), porém esta prática não é recomendada por englobar libs web + backend NodeJS juntos.
+1. [NPM](https://www.npmjs.com/) é utilizado para o gerenciamento de módulos em Node.js, destinado a gestão de ferramentas utilizadas como suporte e automação do desenvolvimento(builds, geração de código, tasks e afins). Assim como é capaz de gerenciar componentes de front-end quando utilizado em conjunto com o [Browserify](http://browserify.org/), porém esta prática não é recomendada por englobar libs web + backend NodeJS juntos.
   - Um ponto importante ao se utilizar o npm é que os arquivos da pasta **node\_modules** não devem ser versionados, apenas o arquivo **package.json**.
 1. [Bower](http://bower.io/) por sua vez foi criado especialmente para o gerenciamento de pacotes de front-end, sendo otimizado para este propósito. Portanto é o mais recomendado quando se trata de projetos web.
   - Um ponto importante ao se utilizar o bower é que os arquivos da pasta **bower\_components** não devem ser versionados, apenas o arquivo **bower.json**.
@@ -394,7 +394,7 @@ Para auxílo no deploy, existem plugins que podem ser utilizados, como o própri
 
 Em ambiente de desenvolvimento, recomenda-se utilizar o módulo NodeJs http-server, que sobe rapidamente um servidor web de arquivos estáticos, existe plugins dele para execução integrada via grunt. Caso seja utilizado processador SASS, Compass Sprites e/ou outra task que necessite rodar após qualquer alteração em código e antes do acesso via browser, para testes de desenvolvimento, se quiser que tais tasks sejam executadas automaticamente após a modificação faça uso do plugin [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch).
 
-###Testes Automatizados
+###Automated Tests
 
 Existem duas ferramentas de testes que são recomendadas pela documentação do AngularJs (escritos em Node.js). São elas:
 
@@ -403,7 +403,7 @@ Existem duas ferramentas de testes que são recomendadas pela documentação do 
 
 Ambas instanciam o navegador, carregam os arquivos previamente configurados, executam os testes e retornam seu resultado.
 
-###Geração de Código
+###Code Generation
 
 É recomendado que se utilize geradores de código sempre que possível, para reduzir consideravelmente o tempo gasto com escrita de código repetitivo, incluindo:
 
@@ -434,7 +434,7 @@ Ferramentas como Google Chrome e Firebug (para Firefox) são recomendadas para r
 
 Além dessas ferramentas é recomendado o uso do [AngularJS Batarang](https://github.com/angular/batarang) para depurar scope e watch no contexto do angular.
 
-## Componentes
+##Components
 
 Stack utilizada pelo [demo](https://github.com/jediproject/ng-jedi-demo) e [gerador](https://github.com/jediproject/generator-jedi) Jedi:
 
