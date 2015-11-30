@@ -29,7 +29,6 @@
     //...
     }]);
 ```
-
 * Routes
 ```javascript
     var $routeProviderReference;
@@ -76,72 +75,70 @@
         });
     }]);
 ```
-
 * Including new dependencies:
 
     * Install or download them to your machine using whatever you see fit. You can try using bower, e.g:
-```shell
-    bower install package-name --save
-```
-
+	```shell
+	    bower install package-name --save
+	```
     * Add the path to the desired files to **assetsfiles.json**, specifying source ("*src*") and destination ("*dest*"). Source is the file you want to include in your project, and destination is where in your project should grunt copy that file to, e.g:
-```json
-    {
-            "files": [
-                {
-                    "src": "bower_components/angular/angular.js",
-                    "dest": "assets/libs/angular/angular.js"
-                },
-                {
-                    "src": "bower_components/jquery/dist/jquer.js",
-                    "dest": "assts/libs/jquery/jquery.js"
-                }
-            ]
-        }
-```
-    
-    * Then include these deps in the new module on your Angular app. Open the **main.tpl.js** and do like in the following example:
-```javascript
-    "use strict";
+	```json
+	    {
+	            "files": [
+	                {
+	                    "src": "bower_components/angular/angular.js",
+	                    "dest": "assets/libs/angular/angular.js"
+	                },
+	                {
+	                    "src": "bower_components/jquery/dist/jquer.js",
+	                    "dest": "assts/libs/jquery/jquery.js"
+	                }
+	            ]
+	        }
+	```
 
-    require.config({
-        baseUrl: "",
-    
-        // alias libraries paths. Must set "angular"
-        paths: {
-            'app'= 'app/app.js',
-            'version': 'version.json',
-            'modules': 'app/modules.json',
-    
-            // main Dependencies
-            'ng-jedi-utilities': 'assets/libs/ng-jedi-utilities/utilities.js',
-    
-            // ## Common Components
-            'app-common': 'app/common/common-app.js',
-    
-            //## 3rd party angular scripts
-            'angular': 'assets/libs/angular/angular.js',
-    
-            //## 3rd party non angular scripts
-            'jquery': 'assets/libs/jquery/jquery.js'
-    
-        },
-        
-        // Add angular modules that does not support AMD out of the box, put it in a shim
-        shim: {
-            "jquery"= {
-                exports: "$"
-            },
-            "angular": {
-                deps: ["jquery"],
-                exports: "angular"
-            }
-        },
-    
-        // kick start application
-        deps: ["app"]
-    ]);
-```
+    * Then include these deps in the new module on your Angular app. Open the **main.tpl.js** and do like in the following example:
+	```javascript
+	    "use strict";
+	
+	    require.config({
+	        baseUrl: "",
+	    
+	        // alias libraries paths. Must set "angular"
+	        paths: {
+	            'app'= 'app/app.js',
+	            'version': 'version.json',
+	            'modules': 'app/modules.json',
+	    
+	            // main Dependencies
+	            'ng-jedi-utilities': 'assets/libs/ng-jedi-utilities/utilities.js',
+	    
+	            // ## Common Components
+	            'app-common': 'app/common/common-app.js',
+	    
+	            //## 3rd party angular scripts
+	            'angular': 'assets/libs/angular/angular.js',
+	    
+	            //## 3rd party non angular scripts
+	            'jquery': 'assets/libs/jquery/jquery.js'
+	    
+	        },
+	        
+	        // Add angular modules that does not support AMD out of the box, put it in a shim
+	        shim: {
+	            "jquery"= {
+	                exports: "$"
+	            },
+	            "angular": {
+	                deps: ["jquery"],
+	                exports: "angular"
+	            }
+	        },
+	    
+	        // kick start application
+	        deps: ["app"]
+	    ]);
+	```
     
 ###CRUD
 
@@ -233,7 +230,6 @@
 
     }]);
 ```
-
 * View
 ```html
 <form jd-panel jd-title="YourFeature" ng-controller="app.yourSystem.yourModule.yourFeature.YourFeature as yourFeatureCtrl">
@@ -285,12 +281,16 @@ app.controller(['yourService', function (yourService) {
 ```
 
 ###Creating Modals
+
+Javascript: 
 ```javascript
 jd.factory.newModal("yourModalDirective", 'app/view/yourModal.html', 'yourModalCtrl', ['myService', ['param1', 'param2'], function (myService, param1, param2) {
   	// your controller body
  	// we recommend writing the controller using the vm pattern
 }], {size: 'lg'});
 ```
+	
+HTML:
 ```html
 <!-- using 'yourModalDirective'-->
 <button your-modal-directive></button>
@@ -383,28 +383,27 @@ Tip: The button with the main action on a page should have the *btn-primary* cla
 * Grids should use the **jd-table** directive
     
     * When using grids to display data as a result of something (a search result, maybe) use a **jd-panel** and **jd-toggle** to form a context for the grid:
-```html
-<form ...>
-   <div jd-panel="Results" jd-toggle>
-      <table jd-table ...>
-         ...
-      </table>
-   </div>
-</form>
-```
-
+	```html
+	<form ...>
+	   <div jd-panel="Results" jd-toggle>
+	      <table jd-table ...>
+	         ...
+	      </table>
+	   </div>
+	</form>
+	```
     * If the grid is already part of any existent context or view it should be in div.col-xs-12 inside a div.row, like this:
-```html
-<form ...>
-   <div class="row">
-      <div class="col-xs-12">
-         <table jd-table ...>
-            ...
-         </table>
-      </div>
-   </div>
-</form>
-```
+	```html
+	<form ...>
+	   <div class="row">
+	      <div class="col-xs-12">
+	         <table jd-table ...>
+	            ...
+	         </table>
+	      </div>
+	   </div>
+	</form>
+	```
 
 * A textarea, a group of checkboxes or a group of radio buttons should each use one entire line (or row), being inside a div.row and having size 12 as follow:
 ```html
