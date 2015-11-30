@@ -6,7 +6,7 @@
     1. [Creating Services](#creating-services)
     1. [Creating Modals](#creating-modals)
     1. [Creating Directives](#creating-directives)
-    1. [Creating Filters](#Creating-filters)
+    1. [Creating Filters](#creating-filters)
 1. [HTML Guidelines](#html-guidelines)
 
 ##Using Jedi Components
@@ -80,10 +80,12 @@
     ```
 
 * Including new dependencies:
+
     * Install or download them to your machine using whatever you see fit. You can try using bower, e.g:
-```shell
+    ```shell
     bower install package-name --save
-```
+    ```
+
     * Add the path to the desired files to **assetsfiles.json**, specifying source ("*src*") and destination ("*dest*"). Source is the file you want to include in your project, and destination is where in your project should grunt copy that file to, e.g:
 	```json
     {
@@ -99,6 +101,7 @@
             ]
         }
     ```
+    
     * Then include these deps in the new module on your Angular app. Open the **main.tpl.js** and do like in the following example:
     ```javascript
     "use strict";
@@ -332,12 +335,14 @@ jd.factory.newFilter('yourFilter', [function () {
 * See [this](http://getbootstrap.com/css/#grid) to read more about bootstrap's space organization and display sizes.
 
 * Always use a **form** element as the root element (or the main element) of your current view. Use the directives **jd-panel** (to regular pages) or **jd-modal**. E.g:
+
 ```html
 <form jd-panel jd-title="TÍTULO" ng-controller="ControllerName as controllerAlias">
 ```
    Tip: modals don't need the ng-controller directive.
 
 * Always use at least one row to organize things inside the **form**:
+
 ```html
 <form ...>
    <div class="row">
@@ -347,6 +352,7 @@ jd.factory.newFilter('yourFilter', [function () {
 ```
 
 * Info or selection views should always wrap fields and buttons in a **jd-panel** having "Filters" as a standard title and with the **jd-toggle** attribute. Also use the **jd-panel** to separate the view in different contexts. E.g:
+
 ```html
 <form ...>
    <div class="row">
@@ -368,6 +374,7 @@ jd.factory.newFilter('yourFilter', [function () {
 ``` 
 
 * Buttons should always be at the bottom of the context, using class *btn* inside a div.row and a div.col:
+
 ```html
 <form ...>
     ...
@@ -386,6 +393,7 @@ jd.factory.newFilter('yourFilter', [function () {
 * Grids should use the **jd-table** directive
     
     * When using grids to display data as a result of something (a search result, maybe) use a **jd-panel** and **jd-toggle** to form a context for the grid:
+
 ```html
 <form ...>
    <div jd-panel="Results" jd-toggle>
@@ -397,6 +405,7 @@ jd.factory.newFilter('yourFilter', [function () {
 ```
 
     * If the grid is already part of any existent context or view it should be in div.col-xs-12 inside a div.row, like this:
+
 ```html
 <form ...>
    <div class="row">
@@ -410,6 +419,7 @@ jd.factory.newFilter('yourFilter', [function () {
 ```
 
 * A textarea, a group of checkboxes or a group of radio buttons should each use one entire line (or row), being inside a div.row and having size 12 as follow:
+
 ```html
 <form ...>
    ...
@@ -423,6 +433,7 @@ jd.factory.newFilter('yourFilter', [function () {
 ```
 
 * To create multiple contexts side by side use a div with **jd-panel** inside a div.col with the size of each area and inside a div.row:
+
 ```html
 <form ...>
    ...
@@ -440,6 +451,7 @@ jd.factory.newFilter('yourFilter', [function () {
 ```
 
 * Use div.row to explicitly organize the view having specific fields or elements in diferent lines:
+
 ```html
 <form ...>
    <div class="row">
@@ -460,6 +472,7 @@ jd.factory.newFilter('yourFilter', [function () {
 ```
 
 * Help or info texts should use the *small* html element with the *help-block* class. Or combine it in a **jd-input** field using the **jd-help** attribute.
+
 ```html
 <form ...>
    ...
@@ -480,6 +493,7 @@ jd.factory.newFilter('yourFilter', [function () {
 ```
 
 * You can combine fields with buttons (like a selecting or cleaning button for a input field) should use the following structure:
+
 ```html
 <div jd-input jd-label="LABEL" jd-element-class="input-group">
 	<input jd-validation-tooltip class="form-control" required type="text" ...>
