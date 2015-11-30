@@ -1,13 +1,13 @@
 #Develop Guide
 
-1. [Usando os componentes Jedi](#Usando-os-componentes-Jedi)
-    1. [Configurações Iniciais](#Configurações-iniciais)
-    1. [CRUD](#CRUD)
-    1. [Criando Services](#Criando-Services)
-    1. [Criando Modais](#Criando-Modais)
-    1. [Criando Directives](#Criando-Directives)
-    1. [Criando Filters](#Criando-Filters)
-1. [Composição do HTML](#Composição-do-HTML)
+1. [Usando os componentes Jedi](#usando-os-componentes-jedi)
+    1. [Configurações Iniciais](#configurações-iniciais)
+    1. [CRUD](#crud)
+    1. [Criando Services](#criando-services)
+    1. [Criando Modais](#criando-modais)
+    1. [Criando Directives](#criando-directives)
+    1. [Criando Filters](#criando-filters)
+1. [Composição do HTML](#composição-do-html)
 
 ##Usando os componentes Jedi
 ###Configurações Iniciais
@@ -108,20 +108,20 @@
         // alias libraries paths. Must set "angular"
         paths: {
             'app'= 'app/app.js',
-            'version’: 'version.json',
+            'version': 'version.json',
             'modules': 'app/modules.json',
     
             // main Dependencies
             'ng-jedi-utilities': 'assets/libs/ng-jedi-utilities/utilities.js',
     
             // ## Common Components
-            'app-common': 'app/common/common-app.js’,
+            'app-common': 'app/common/common-app.js',
     
             //## 3rd party angular scripts
             'angular': 'assets/libs/angular/angular.js',
     
             //## 3rd party non angular scripts
-            ’jquery': 'assets/libs/jquery/jquery.js'
+            'jquery': 'assets/libs/jquery/jquery.js'
     
         },
         
