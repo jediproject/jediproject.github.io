@@ -1,16 +1,16 @@
 #Develop Guide
 
-1. [Usando os componentes Jedi](#usando-os-componentes-jedi)
-    1. [Configurações Iniciais](#configurações-iniciais)
+1. [Using Jedi Components](#using-jedi-components)
+    1. [Initial Configs](#initial-configs)
     1. [CRUD](#crud)
-    1. [Criando Services](#criando-services)
-    1. [Criando Modais](#criando-modais)
-    1. [Criando Directives](#criando-directives)
-    1. [Criando Filters](#criando-filters)
-1. [Composição do HTML](#composição-do-html)
+    1. [Creating Services](#creating-services)
+    1. [Creating Modals](#creating-modals)
+    1. [Creating Directives](#creating-directives)
+    1. [Creating Filters](#Creating-filters)
+1. [HTML Guidelines](#html-guidelines)
 
-##Usando os componentes Jedi
-###Configurações Iniciais
+##Using Jedi Components
+###Initial Configs
 
 * CORS + Headers + Restangular
 
@@ -18,42 +18,42 @@
     app.config(['$routeProvider', '$httpProvider', 'RestangularProvider', 'jedi.utilities.UtilitiesProvider',  function ($routeProvider, $httpProvider, RestangularProvider,  Utilities) {
     //...
 
-    // configuração dos headers padrões para funcionamento do CORS
+    // config the standard headers to enable CORS
     Utilities.enableCors($httpProvider);
 
-    // configuração dos headers para evitar bug com If-Modified-Since no iis
+    // config headers to avoid "If-Modified-Since" bug on IIS
     Utilities.fixIISHttpHeaders($httpProvider);
 
-    // configura Restangular
+    // config restangular
     Utilities.configureRestangular(RestangularProvider);
 
     //...
     }]);
     ```
 
-* Rotas
+* Routes
 
     ```javascript
     var $routeProviderReference;
 
     app.config(['$routeProvider',  function ($routeProvider) {
-	   //...
+       //...
 
-    	// atribui $routeProvider para ser usado posteriormente para configuração das rotas dinamicamente
+        // save the $routeProvider to be used later in the route configuration
         $routeProviderReference = $routeProvider;
 
-    	//...
+        //...
     }]);
 
     app.run(['$route', function ($route) {
         // load app modules (e.g.: core, billing)
         jd.factory.loadModules(['core'], function (module) {
-            // adiciona path para i18n do sistema
+            // add i18n path on system
             localize.addResource('app/' + module + '/i18n/resources_{lang}.json');
         }, function () {
-            // after load all modules and its dependencies, it can load routes
+            // after loading all modules and its dependencies, it can load the routes
 
-            $log.info('Load routes');
+            $log.info('Loading routes');
 
             // to load the routes dynamically you could make a http request to your back-end service and retrieve all feature routes that the user has access.
             $routeProviderReference
@@ -79,10 +79,12 @@
     }]);
     ```
 
-* Incluindo novas dependências
-    * bower install package-name --save
-    * Após baixar o novo módulo, é necessários incluir os diretórios no arquivo assetsfiles.json, que por sua vez, será responsável por dizer qual diretório do seu projeto a rotina do grunt deverá copiar os arquivos da pasta bower_components. e.g.:
-    
+* Including new dependencies:
+    * Install or download them to your machine using whatever you see fit. You can try using bower, e.g:
+```shell
+    bower install package-name --save
+```
+    * Add the path to the desired files to **assetsfiles.json**, specifying source ("*src*") and destination ("*dest*"). Source is the file you want to include in your project, and destination is where in your project should grunt copy that file to, e.g:
 	```json
     {
             "files": [
@@ -97,8 +99,7 @@
             ]
         }
     ```
-    * Agora é necessários incluir as dependências do novo módulo na sua aplicação Angular. Para isso, abra o arquivo main.tpl.js e siga o exemplo:
-    
+    * Then include these deps in the new module on your Angular app. Open the **main.tpl.js** and do like in the following example:
     ```javascript
     "use strict";
 
@@ -147,14 +148,14 @@
 
     ```javascript
     /*
-        Controlador da sua primeira tela.
+        Your first page controller.
     */
     jd.factory.newController('app.yourSystem.yourModule.yourFeature.YourFeatureCtrl', ['jedi.dialogs.AlertHelper', 'yourSystemRestService', 'toastr', function (alertHelper, yourSystemRestService, toastr) {
     
     'use strict';
 
     //#region View/Model initialize
-    //Utilize o padão ViewModel(vm) para construção dos controllers
+    // Use the vm syntax to build your controller
     var vm = this;
     vm.yourFeatureModel = {};
     //#endregion
@@ -176,7 +177,7 @@
     //#endregion
 
     //#region Load controller
-    //Caso tenha a necessidade, chame functions ao iniciar a página.
+    // Any functions that should be called when the page is loaded.
     //#endregion
 
     //#region Events definitions
@@ -210,22 +211,20 @@
 
     function remove(yourFeature) {
         alertHelper.confirm('Deseja realmente excluir ' + yourFeature.name + '?', function () {            
-            yourFeature.remove({ id: yourFeature.id }).then(function () {            
-                toastr.success('A funcionalidade ' + yourFeature.name + ' foi removida com sucesso!');
+            yourFeature.remove({ id: yourFeature.id }).then(function () {  
+                toastr.success('The Feature ' + yourFeature.name + ' was succesfully removed!');          
                 filter();
             });
         });
     }
 
     function openEditModal(yourFeature) {
-        //Chamada da modal para edição
         modalHelper.open('yourFeatureEdit.html', ['$scope', '$modalInstance', 'yourFeature', 'action', SystemRegistrationEditCtrl], { yourFeature: yourFeature, action: 'edit' }, function () {
             vm.filter();
         });
     }
 
     function openCreateModal() {
-        //Chamada da modal para inclusão
         modalHelper.open('yourFeatureEdit.html', ['$scope', '$modalInstance', 'yourFeature', 'action', SystemRegistrationEditCtrl], { yourFeature: {}, action: 'new' }, function () {
             vm.filter();
         });
@@ -242,30 +241,30 @@
 
 	 <div jd-panel jd-title="Filtros" jd-toggle>
         <div class="row">
-            <input jd-input jd-label="Nome" type="text" ng-model="yourFeatureCtrl.yourFeatureModel.nameFilter" />
-            <input jd-input jd-label="Apelido" type="text" ng-model="yourFeatureCtrl.yourFeatureModel.aliasFilter" />
+            <input jd-input jd-label="Name" type="text" ng-model="yourFeatureCtrl.yourFeatureModel.nameFilter" />
+            <input jd-input jd-label="Alias" type="text" ng-model="yourFeatureCtrl.yourFeatureModel.aliasFilter" />
         </div>
         <div class="row">
             <div class="col-xs-12">
-                <button class="btn btn-primary" ng-click="yourFeatureCtrl.filter()" jd-i18n>Filtrar</button>
-                <button class="btn btn-info" ng-click="yourFeatureCtrl.clear()" jd-i18n>Limpar</button>
-                <button class="btn btn-info" ng-click="yourFeatureCtrl.openCreateModal()" jd-i18n>Novo</button>
+                <button class="btn btn-primary" ng-click="yourFeatureCtrl.filter()" jd-i18n>Filter</button>
+                <button class="btn btn-info" ng-click="yourFeatureCtrl.clear()" jd-i18n>Clear</button>
+                <button class="btn btn-info" ng-click="yourFeatureCtrl.openCreateModal()" jd-i18n>New</button>
             </div>
         </div>
     </div>
 
-    <div jd-panel jd-title="Resultado" jd-toggle="yourFeatureCtrl.togglePanelResults">
+    <div jd-panel jd-title="Result" jd-toggle="yourFeatureCtrl.togglePanelResults">
         <table jd-table="yourFeatureCtrl.resultTableConfig" jd-paginated>
             <tbody>
                 <tr>
-                    <td jd-sortable jd-attribute="name" jd-title="Nome"></td>
-                    <td jd-sortable jd-attribute="alias" jd-title="Apelido"></td>
-                    <td jd-sortable jd-attribute="code" jd-title="Código"></td>
-                    <td jd-sortable jd-attribute="description" jd-title="Descrição"></td>
-                    <td jd-title="Ações" class="text-center" width="100px">
-                        <a href="javascript:;" jd-i18n title="Editar" ng-click="yourFeatureCtrl.openEditModal(item)"><i class="glyphicon glyphicon-pencil"></i></a>
+                    <td jd-sortable jd-attribute="name" jd-title="Name"></td>
+                    <td jd-sortable jd-attribute="alias" jd-title="Alias"></td>
+                    <td jd-sortable jd-attribute="code" jd-title="Code"></td>
+                    <td jd-sortable jd-attribute="description" jd-title="Description"></td>
+                    <td jd-title="Actions" class="text-center" width="100px">
+                        <a href="javascript:;" jd-i18n title="Edit" ng-click="yourFeatureCtrl.openEditModal(item)"><i class="glyphicon glyphicon-pencil"></i></a>
                         &nbsp;
-                        <a href="javascript:;" jd-i18n title="Excluir" ng-click="yourFeatureCtrl.remove(item)"><i class="glyphicon glyphicon-remove"></i></a>
+                        <a href="javascript:;" jd-i18n title="Remove" ng-click="yourFeatureCtrl.remove(item)"><i class="glyphicon glyphicon-remove"></i></a>
                     </td>
                 </tr>
             </tbody>
@@ -275,7 +274,7 @@
 </form>
 ```
 
-###Criando Services
+###Creating Services
 
 ```javascript
 jd.factory.newService("yourService", 'api/myAction/:userId', {'get': {method: 'GET'}}, {itemId:'@id'});
@@ -287,7 +286,7 @@ app.controller(['yourService', function (yourService) {
 }]);
 ```
 
-###Criando Modais
+###Creating Modals
 
 ```javascript
 jd.factory.newModal("yourModalDirective", 'app/view/yourModal.html', 'yourModalCtrl', ['myService', ['param1', 'param2'], function (myService, param1, param2) {
@@ -302,7 +301,7 @@ jd.factory.newModal("yourModalDirective", 'app/view/yourModal.html', 'yourModalC
 <input your-modal-directive="onblur">
 ```
 
-###Criando Directives
+###Creating Directives
 ```javascript
 jd.factory.newDirective("yourDirective", [function () {
   return {
@@ -314,7 +313,7 @@ jd.factory.newDirective("yourDirective", [function () {
 }]);
 ```
 
-###Criando Filters
+###Creating Filters
 
 ```javascript
 jd.factory.newFilter('yourFilter', [function () {
@@ -324,60 +323,85 @@ jd.factory.newFilter('yourFilter', [function () {
 ]);
 ```
 
-###Composição do HTML
+###HTML Guidelines
 
-* Projeto utiliza twitter bootstrap, este por sua vez divide os espaços de uma determinada área em 12 partes. Sempre procurar preencher as 12 áreas para evitar espaços na tela. A diretiva jd-input já está preparada para trabalhar com estes 12 tamanhos, tendo como default a divisão de cada linha da tela em 6 campos para telas grandes, 4 campos para telas desktops convencionais, 2 campos para telas tablet e 1 campo para mobile. Para usar outros valores basta usar atributos jd-XX-size e redefinir. Mais informações na doc da diretiva.
+* We use Twitter's [Bootstrap](http://getbootstrap.com/) in the project. Bootstraps works by always dividing the space in any html area in 12 columns and as many rows as needed. To avoid unplanned blank spaces try to always fill all the columns. 
 
-* Sempre usar elemento principal do tipo form com diretiva jd-panel (para telas abertas via navegação) ou jd-modal (para telas abertas via modal). Ex.:
+* The **jd-input** directive is ready to work like that, and automatically try to fill all the spaces. The default behaviour for the jd-input is to fill each row with 6 components on large displays, 4 components on medium displays (regular desktop), 2 components on small displays (tablets), and 1 component on mobile displays. You can change the default value by using the jd-XX-size attributes. More info on the jd-input can be found in its own [docs](https://github.com/jediproject/ng-jedi-layout#ng-jedi-layout).
+
+* See [this](http://getbootstrap.com/css/#grid) to read more about bootstrap's space organization and display sizes.
+
+* Always use a **form** element as the root element (or the main element) of your current view. Use the directives **jd-panel** (to regular pages) or **jd-modal**. E.g:
 ```html
-<form jd-panel jd-title="TÍTULO" ng-controller="NomeControlador as aliasControlador">
+<form jd-panel jd-title="TÍTULO" ng-controller="ControllerName as controllerAlias">
 ```
-   Obs.: modais não precisam ter a diretiva ng-controller.
+   Tip: modals don't need the ng-controller directive.
 
-* Campos iniciais do form devem ficar dentro de uma div.row:
+* Always use at least one row to organize things inside the **form**:
 ```html
 <form ...>
    <div class="row">
-      ... campos
+      ...
    </div>
 </form>
 ```
 
-    Obs.: Telas de consulta/seleção deverão encobrir os campos e botões em uma jd-panel, com título padrão "Filtros” e a diretiva jd-toggle. Sempre que houver mais de um contexto em uma mesma tela, separar cada contexto em áres, através do jd-panel.
-
-* Botões sempre abaixo dos campos, com a classe btn, dentro de uma div.row e div.col:
+* Info or selection views should always wrap fields and buttons in a **jd-panel** having "Filters" as a standard title and with the **jd-toggle** attribute. Also use the **jd-panel** to separate the view in different contexts. E.g:
 ```html
 <form ...>
+   <div class="row">
+        <div jd-panel jd-title="Filters" jd-toggle>
+            <div class="row">
+                ...
+            </div>
+            <div class="row">
+                ...
+            </div>
+        </div>
+        <div jd-panel jd-title="Info" jd-toggle>
+            <div class="row">
+                ...
+            </div>
+        </div>
+   </div>
+</form>
+``` 
+
+* Buttons should always be at the bottom of the context, using class *btn* inside a div.row and a div.col:
+```html
+<form ...>
+    ...
    <div class="row">
       <div class="col-xs-12">
-         <button class="btn btn-primary">Botão 1</button>
-         <button class="btn btn-info">Botão 2</button>
+         <button class="btn btn-primary">Button 1</button>
+         <button class="btn btn-info">Button 2</button>
       </div>
    </div>
+   ...
 </form>
 ```
 
-    Obs.: Todo botão da ação principal deve usar a classe btn-primary, sendo o primeiro botão à esquerda, demais usar a classe btn-info. Não deve haver mais de um botão com btn-primary.
+    Tip: The button with the main action on a page should have the *btn-primary* class. It also should be the first button on the left (in case of multiple buttons aligned). All the other button elements should use the *btn-info* class, and there should be only one button with *btn-primary* in a page.
 
-* Grids devem usar a diretiva at-table
-
-     * Caso seja utilizado área contextual para exibição de resultado, utilizar jd-panel juntamente com o jd-toggle:
+* Grids should use the **jd-table** directive
+    
+    * When using grids to display data as a result of something (a search result, maybe) use a **jd-panel** and **jd-toggle** to form a context for the grid:
 ```html
 <form ...>
-   <div jd-panel="Resultado" jd-toggle>
-      <table at-table ...>
+   <div jd-panel="Results" jd-toggle>
+      <table jd-table ...>
          ...
       </table>
    </div>
 </form>
 ```
 
-     * Caso seja uma grid dentro de uma área existente, junto com outros elementos, deverá ficar em uma div.col-xs-12, dentro de outra div.row:
+    * If the grid is already part of any existent context or view it should be in div.col-xs-12 inside a div.row, like this:
 ```html
 <form ...>
    <div class="row">
       <div class="col-xs-12">
-         <table at-table ...>
+         <table jd-table ...>
             ...
          </table>
       </div>
@@ -385,36 +409,37 @@ jd.factory.newFilter('yourFilter', [function () {
 </form>
 ```
 
-* Textarea, checkbox múltiplo e radio múltiplo devem ocupar uma linha inteira, utilizar um div.row e tamanho 12:
+* A textarea, a group of checkboxes or a group of radio buttons should each use one entire line (or row), being inside a div.row and having size 12 as follow:
 ```html
 <form ...>
    ...
    <div class="row">
-      <input jd-input="12" jd-grouplabel="LABEL GRUPO" type="radio|checkbox" jd-repeat="...">
+      <input jd-input="12" jd-grouplabel="LABEL GROUP" type="radio|checkbox" jd-repeat="...">
    </div>
    <div class="row">
       <textarea jd-input="12" jd-label="LABEL TEXTAREA">
    </div>
 </form>
 ```
-* Áreas dentro do form devem usar div com diretiva jd-panel dentro de uma div.col definindo o tamanho e uma div.row para compor as áreas:
+
+* To create multiple contexts side by side use a div with **jd-panel** inside a div.col with the size of each area and inside a div.row:
 ```html
 <form ...>
    ...
    <div class="row">
-      <div class="col-md-6"> --> md-6 irá dividir a metade da tela para essa área apenas em resolução desktop
-         <div jd-panel jd-title="NOME AREA">
+      <div class="col-md-6"> <!-- md-6 it will divide this area in half but only on desktop or bigger resolution (because of the "md") -->
+         <div jd-panel jd-title="AREA NAME">
          </div>
       </div>
-      <div class="col-md-6"> --> md-6 irá dividir a metade da tela para essa área apenas em resolução desktop
-         <div jd-panel jd-title="NOME AREA">
+      <div class="col-md-6">
+         <div jd-panel jd-title="AREA NAME">
          </div>
       </div>
    </div>
 </form>
 ```
 
-* Sempre que quiser dividir explicitamente a quebra de determinados campos em linhas separadas, usar div.row em cada agrupamento:
+* Use div.row to explicitly organize the view having specific fields or elements in diferent lines:
 ```html
 <form ...>
    <div class="row">
@@ -426,7 +451,7 @@ jd.factory.newFilter('yourFilter', [function () {
       <input jd-input jd-label="LABEL" ...>
    </div>
    <div class="row">
-      <input jd-input jd-grouplabel="LABEL GRUPO" type="radio|checkbox" jd-repeat="...">
+      <input jd-input jd-grouplabel="LABEL GROUP" type="radio|checkbox" jd-repeat="...">
    </div>
    <div class="row">
       <textarea jd-input jd-label="LABEL TEXTAREA">
@@ -434,69 +459,68 @@ jd.factory.newFilter('yourFilter', [function () {
 </form>
 ```
 
-* Textos de help deverão usar o elemento <small class=”help-block”>. Caso se deseje aplicar em um input, basta usar o jd-input juntamente com o jd-help=”Texto do help”:
+* Help or info texts should use the *small* html element with the *help-block* class. Or combine it in a **jd-input** field using the **jd-help** attribute.
 ```html
 <form ...>
    ...
    <div class="row">
-      <input jd-input jd-label="LABEL" jd-help="TEXTO HELP">
+      <input jd-input jd-label="LABEL" jd-help="TEXT HELP">
    </div>
 </form>
-```
-para HTML puro:
-```html
+<!-- OR -->
 <form ...>
    ...
    <div class="row">
       ...
       <input ...>
-      <small class="help-block">TEXTO HELP</small>
+      <small class="help-block">TEXT HELP</small>
       ...
    </div>
 </form>
 ```
-* Campos com botões de contexto (como botão pra buscar ou limpar o campo) devem usar a seguinte estrutura:
+
+* You can combine fields with buttons (like a selecting or cleaning button for a input field) should use the following structure:
 ```html
 <div jd-input jd-label="LABEL" jd-element-class="input-group">
 	<input jd-validation-tooltip class="form-control" required type="text" ...>
 	<span class="input-group-btn">
-		<button jd-i18n title="Selecionar" class="btn btn-warning" ...><i class=" glyphicon glyphicon-list-alt"></i></button>
+		<button jd-i18n title="Select" class="btn btn-warning" ...><i class=" glyphicon glyphicon-list-alt"></i></button>
 	</span>
 </div>
 ```
-    Obs.: O div principal com o jd-input e campo input com jd-validation-tooltip, se no input for usado jd-input o layout quebrará pois esta diretiva fará wrapper do elemento com o template de form-control bootstrap.
+    Tip: The main div should have the **jd-input** directive and the input element only the **jd-validation-tooltip** attribute. If you set the input element with the **jd-input** directive the layout will break and not look good. 
 
-* Botões
-    * Salvar:
-        * Ícone: glyphicon-floppy-disk
-        * Estilo: btn-primary
+* Buttons
+    * Save:
+        * Icon: glyphicon-floppy-disk
+        * Class: btn-primary
 
-    * Excluir:
-        * Ícone: glyphicon-remove
-        * Estilo: btn-danger (se for um button)
+    * Remove:
+        * Icon: glyphicon-remove
+        * Class: btn-danger (if it is a button)
 
-    * Editar:
-        * Ícone: glyphicon-pencil
-        * Estilo: btn-info (se for um button)
+    * Edit:
+        * Icon: glyphicon-pencil
+        * Class: btn-info (if it is a button)
 
-    * Incluir/Adicionar:
-        * Ícone: glyphicon-plus
-        * Estilo: btn-info (se for um button)
+    * Include/Add:
+        * Icon: glyphicon-plus
+        * Class: btn-info (if it is a button)
 
-    * Modal de seleção:
-        * Ícone: glyphicon-list-alt
-        * Estilo: btn-warning
+    * Selection Modal:
+        * Icon: glyphicon-list-alt
+        * Class: btn-warning
 
-    * Botão de seleção em grid:
-        * Ícone: glyphicon-ok
-        * Estilo: btn-info (se for um button)
+    * Button to select an element inside a grid (table):
+        * Icon: glyphicon-ok
+        * Class: btn-info (if it is a button)
 
-    * Botão de visualizar detalhes:
-        * Ícone: glyphicon-zoom-in
-        * Estilo: btn-info (se for um button)
+    * Details or Info button:
+        * Icon: glyphicon-zoom-in
+        * Class: btn-info (if it is a button)
 
-    * Botão de limpar seleção (vinda de modal por exemplo):
-        * Ícone: glyphicon-remove
-        * Estilo: btn-danger (se for um button)
-
-Obs.: Botões com apenas ícone é obrigatório informar um title com a descrição da ação.
+    * Clear Field or Clear Selection button:
+        * Icon: glyphicon-remove
+        * Class: btn-danger (if it is a button)
+        
+Tip: Buttons not containing text (buttons that only have an icon) must have a title describing its action.
