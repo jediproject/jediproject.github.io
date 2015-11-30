@@ -23,8 +23,8 @@
     1. [Directives](#Directives)
     1. [Filters](#Filters)
 1. [Recommended Tools](#Recommended-Tools)
-    1. [Dependency Management - Bower vs NPM](#Dependency-Management---Bower-vs-NPM)
-    1. [Build e Deploy](#Build-e-Deploy)
+    1. [Dependency Management - Bower vs NPM](#Dependency-Management)
+    1. [Build and Deploy](#Build-and-Deploy)
     1. [Automated Tests](#Automated-Tests)
     1. [Code Generation](#Code-Generation)
     1. [Mocks](#Mocks)
@@ -42,12 +42,12 @@ Provide guidance and recommendations on the tools, best practices, standards, co
 * Facilitate the training of teams
 * Adoption of standards and market practices
 
-##Target
+##<a name="Target"></a>Target
 Mainly applications with angularjs SPA, since it is more widespread, stable and evolving. Presented techniques can mostly be adopted in other frameworks SPA or even Web applications.
 
 ##Overview
 
-###Traditional Model
+###<a name="Traditional-Model"></a>Traditional Model
 
 ![Communication](../dist/img/Communication.png)
 
@@ -55,123 +55,122 @@ In this traditional model the navigation between pages, occurred in the browser,
 
 Frameworks like JSF, Spring MVC, ASP.NET MVC, django, Play, Rails, among others, implement this building model.
 
-###SPA Model
+###<a name="SPA-Model"></a>SPA Model
 
 ![SPAModel](../dist/img/SPAModel.png)
 
-Já neste modelo em SPA, as requisições de páginas HTML são menores, são realizadas quando muda-se de página, entretanto é retornado HTMLs estáticos sem preparação adiciona no servidor de aplicações. Dados são trocados (enviados ou recebidos do servidor) através de requisições AJAX em APIs REST, trafegando dados em formato JSON ou XML.
+In the SPA model, the HTML page requests are smaller, are held when have a page change, though it is returned static HTMLs unprepared adds the application server. Data is exchanged (sent or received from the server) through AJAX requests in REST APIs, traveling data in JSON or XML format.
 
-Este modelo é composto por basicamente 3 tecnologias base:
-* HTML: páginas ou fragmento de páginas
-* JavaScript: controladores e outros recursos programáticos
-* CSS: folha de estilos visuais
+This model basically consists of three core technologies:
+* HTML: pages or page fragment
+* JavaScript: controllers and other programmatic resources
+* CSS: visual stylesheet
 
-Existem alguns frameworks que implementam este modelo (Ember, knockout, backbone.js, etc), porém o recomendado, como já dito acima, é utilizar AngularJs.
+There are some frameworks that implement this model (Ember, knockout, Backbone.js, etc), but recommended, as stated above, is to use AngularJS.
 
-##Logic View
+##<a name="Logic-View"></a>Logic View
 
 ![LogicStructure](../dist/img/LogicStructure.png)
 
-Em aplicações SPA a recomendação é a adoção do modelo acima, basicamente adotar o padrão MVC no lado client, separando e organizando o código por responsabilidade.
+In SPA applications the recommendation is the adoption of the above model, basically adopt the MVC pattern on the client side, separating and organizing code responsibility.
 
-AngularJs já direciona a construção para este padrão MVC e possui tipos de componentes atuando em cada uma destas camadas.
+Angularjs already directs the construction for this MVC pattern and has components acting types in each of these layers.
 
-###Views
+###<a name="Views"></a>Views
 
-Camada onde teremos a implementação da tela e componentes visuais. Nesta camada encontramos os seguintes componentes/recursos AngularJs:
+Layer where we will have the implementation of the canvas and visual components. In this layer we find the following AgularJS components/resources:
 
 * HTML/Templates
 * Data Binds
 * Directives
 * Filters
 
-###Controllers
+###<a name="Controllers"></a>Controllers
 
-Camada onde teremos a implementação dos controladores de fluxo e navegação entre telas. Nesta camada encontramos os seguintes componentes/recursos AngularJs:
+Layer where we will have the implementation of flow controllers and navigation between screens. In this layer we find the following AngularJS components/resources:
 
 * Controller
-* Router e Location
+* Router and Location
 
-###Services
-Camada onde teremos a implementação dos serviços, com regras de negócio (quando não há backend) ou chamadas ao backend. Nesta camada encontramos os seguintes componentes/recursos AngularJs:
+###<a name="Services"></a>Services
+Layer where we will have the implementation of services, with business rules (when there is no backend) or calls to the backend. In this layer we find the following AngularJS components/resources:
 
 * Service
 * Factory
 * Provider
 
-##Code Structure
+##<a name="Code-Structure"></a>Code Structure
 
-Segue abaixo a organização base proposta para projetos SPA, baseado em padrões de mercado e evoluído com incremento de algumas divisões pontuais.
+Following is the base organization proposed for SPA projects, based on industry standards and evolved with an increase of certain individual divisions.
 
-Referência base: https://scotch.io/tutorials/angularjs-best-practices-directory-structure
+Base reference: https://scotch.io/tutorials/angularjs-best-practices-directory-structure
 
-###General Resources
-
-```
-assets --> componentes externos ou implementaçao de código não vinculado ao SPA
-assets\libs --> bibliotecas externas (ex: angular, jquery, bootstrap, etc)
-assets\css --> css de terceiros
-assets\css\app.css --> css customizado no projeto (o único que deve ser modificado)
-assets\fonts --> fontes utilizadas pelo projeto
-assets\img --> imagens utilizadas na montagem do site/projeto
-assets\js --> js não angular customizados ou criados no projeto
-```
-
-Esta estruturação é utilizada por vários componentes de mercado, por exemplo, o Twitter Bootstrap utiliza estes caminhos de pastas em seus CSS, para obter imagens, fontes, etc.
-
-###Foundation Structure
+###<a name="General-Resources"></a>General Resources
 
 ```
-app --> componentes da aplicação SPA
-app\app.js --> js com as configurações gerais da aplicação
-app\common --> módulo de foundation técnico, contendo componentes gerais da app
-app\common\env\common-env.js --> json com variaveis de ambiente gerais da app
-app\common\i18n\resources_[en|pt|*].js --> json de resources para i18n
-app\common\components --> componentes e recursos especializados para o projeto
-app\common\components\[component] --> organizado por componente, contendo js, html…
+assets --> external components or code implementation is not linked to SPA
+assets\libs --> external libraries (ex: angular, jquery, bootstrap, etc)
+assets\css --> third-party css
+assets\css\app.css --> custom css in the project (the only one that must be modified)
+assets\fonts --> sources used by the project
+assets\img --> images used in assembling the site/project
+assets\js --> JS files not AngularJS created/customized in the project
+```
+
+This structure is used by several market components, for example, Twitter Bootstrap uses these folder paths on their CSS, to obtain images, fonts, etc.
+
+###<a name="Foundation-Structure"></a>Foundation Structure
+
+```
+app --> SPA application components
+app\app.js --> JS file with general application settings
+app\common --> foundation technical module, containing general components of the app
+app\common\env\common-env.js --> json file with general environment variables
+app\common\i18n\resources_[en|pt|*].js --> json file with resources for i18n
+app\common\components --> specialized components and resources for the project
+app\common\components\[component] --> organized by component, containing js, html...
 app\common\components\[component]\[component].js
 app\common\components\[component]\[component].html
-app\common\components\header --> componente de tela para montagem do header
-app\common\components\navigation --> componente de tela para montagem do menu
-app\common\features\[submodule]\[feature] --> feature/telas globais de todo projeto
-	Rota recomendada: /common/[submodule]/[feature]
-app\common\features\auth --> telas globais relacionadas com autenticação
-app\common\features\auth\signin --> telas de login
-	Rota: /common/auth/signin
-app\common\features\auth\signup --> telas de cadastro do usuário
-	Rota: /common/auth/signup
+app\common\components\header --> layout component for create the header
+app\common\components\navigation --> layout component for create the menu
+app\common\features\[submodule]\[feature] --> global features/layouts common of every project
+	Suggested route: /common/[submodule]/[feature]
+app\common\features\auth --> glogal screens related to authentication.
+app\common\features\auth\signin --> sign in screen
+	Route: /common/auth/signin
+app\common\features\auth\signup --> sign up screen
+	Route: /common/auth/signup
 ```
 
-###Module Structure
+###<a name="Module-Structure"></a>Module Structure
 
 ```
 app\[module]
-app\[module]\[module]-app.js --> js para configuração do módulo
-app\[module]\env\[module]-env.js --> json com variaveis de ambiente do módulo
-app\[module]\i18n\resources_[en|pt|*].js --> json de resources para i18n
-app\[module]\components\[component]\ --> componentes especializados no módulo
+app\[module]\[module]-app.js --> js file with module settings
+app\[module]\env\[module]-env.js --> json file with module environment variables
+app\[module]\i18n\resources_[en|pt|*].js --> json file with resources for i18n
+app\[module]\components\[component]\ --> specialized module components 
 app\[module]\components\[component]\[component].js
 app\[module]\components\[component]\[component].html
-app\[module]\features\[submodule*]\[feature] --> feature/telas do módulo
+app\[module]\features\[submodule*]\[feature] --> module features/pages
 	Rota recomendada: /[module]/[submodule]/[feature]
 app\[module]\features\[submodule*]\[feature]\[feature]-ctrl.js --> controller
 app\[module]\features\[submodule*]\[feature]\[feature]-service.js --> service
 app\[module]\features\[submodule*]\[feature]\[feature]-directive.js --> directive
 app\[module]\features\[submodule*]\[feature]\[feature]-filter.js --> filter
-app\[module]\features\[submodule*]\[feature]\[feature].html --> página
-app\[module]\features\[submodule*]\[feature]\[feature]\view\*.html --> se mais que 1 html
+app\[module]\features\[submodule*]\[feature]\[feature].html --> page
+app\[module]\features\[submodule*]\[feature]\[feature]\view\*.html --> if more than 1 html
 ```
 
-Nesta organização, propõem-se separar componentes reutilizáveis de telas funcionais. Entende-se por componentes aqueles recursos de tela (fragmentos) ou mecanismos reutilizáveis, em AngularJs seriam as directives, filters, interceptors… Já features seriam as telas funcionais, onde teremos o html que compõe toda tela e seu controlador (e/ou demais recursos específicos da tela).
-
+In this template, it is proposed to separate reusable components of functional pages. Understood as components those common features or reusable mechanisms (directives, filters, interceptors in AngularJS)... Features, instead, would be the functional pages, where we have the HTML that makes up the whole page and its controller (and other pages specific resources).
 Recomenda-se que arquivos e pastas sempre em minúsculo. Para scripts .js utilizar sempre o sufixo que indique seu tipo, ex: myprofile-ctrl.js, myprofile-service.js, myprofile-directive.js, etc.
 
-Para componentes escritos em AngularJs, é recomendado que o nome possua a concatenação do módulo e submódulo, como um package/namespace, para evitar sobreposição de nomes de componentes em distintos módulos.
+For components written in angularjs, it is recommended that the name has concatenation module and submodule, such as a package / namespace to prevent overlapping component names in different modules.
 
-##Patterns and Restrictions
+##<a name="Patterns-and-Restrictions"></a>Patterns and Restrictions
 
-###General
-1. Sempre codificar os scripts para suportar requirejs, module do nodejs ou inclusão diretamente no index.html. Ex.:
+###<a name="General"></a>General
+1. Always modify the scripts to support RequireJS, the module NodeJS or included directly in index.html. Ex.:
 ```javascript
 (function (factory) {
     if (typeof define === 'function') {
@@ -188,101 +187,101 @@ Para componentes escritos em AngularJs, é recomendado que o nome possua a conca
 }));
 ```
 
-1. Se preferir, utilize o mecanismo disponúvel no componente [ng-jedi-factory](https://github.com/jediproject/ng-jedi-factory), que realiza a abstração desta implementação acima para codificação de controllers, services, filters, directives, modais, etc.
+1. If you prefer, use the mechanism available in [ng-jedi-factory](https://github.com/jediproject/ng-jedi-factory) component, which performs this abstraction above implementation for encoding controllers, services, filters, directives, modal, etc.
 
-1. Sempre incluir dependências externas utilizando [bower](http://bower.io/} e configura-la no main.js, no block shim, caso a mesma não esteja codificada para suportar requirejs.
+1. Always include external dependencies using [Bower](http://bower.io/) and set it in main.js, at the shim block if the same is not coded to support RequireJS.
 ```shell
 bower install [nome_dep] --save && grunt
 ```
 
-1. Recursos ligados a uma funcionalidade devem ser criados na estrutura de pastas da funcionalidade
+1. Resources linked to a feature must be created in the feature folder of the structure
 ```javascript
-app\[module]\features\[submodule*]\[feature]\[recursos da feature]
+app\[module]\features\[submodule*]\[feature]\[feature resources]
 ```
 
-1. Componentes devem ser criados na estrutura abaixo e não devem ser funcionalidades completas, mas sim recursos reutilizáveis em funcionalidades/telas
+1. Components must be created in the structure below and should not be a full feature, but reusable resources in features/panels
 ```javascript
-app\[module]\components\[component]\[recursos do componente]
+app\[module]\components\[component]\[component resources]
 ```
 
-1. Scripts de terceiros não devem ser alterados, em vez disso tente criar uma versão nova e publicar no bower, no pior caso customize e versione na pasta **assets\js\**
+1. Third-party scripts should not be changed, instead try to create a new version and publish the bower, in the worst case customize and version in the assets folder **\js\**
 
-1. Valores hardcode que representam diretórios ou informações que podem ser alteradas de acordo com o ambiente, devem ser codificados no **[*module*]-env.js** do módulo específico. No componente [ng-jedi-factory](https://github.com/jediproject/ng-jedi-factory) este json é carregado na variável envSettings, e a constante pode ser acessada assim:
+1. Hardcoded values that represent directories or information that can be changed according to the environment, must be set in **[*module*]-**env.js of the specific module. The [ng-jedi-factory](https://github.com/jediproject/ng-jedi-factory) json component is loaded into envSettings variable and constant can be accessed as follows:
 ```javascript
 envSettings[.module].[variable]
 ```
 
-1. Caso haja requisitos de internacionalização, utilizar o mecanismo [ng-jedi-i18n](https://github.com/jediproject/ng-jedi-i18n), incluindo em todos os textos dos htmls a diretiva [jd-i18n](https://github.com/jediproject/ng-jedi-i18n#translate), para possibilitar a internacionalização posterior.
+1. If there is internationalization requirements, use the mechanism [ng-jedi-i18n](https://github.com/jediproject/ng-jedi-i18n), including all text of the policy htmls [jd-i18n](https://github.com/jediproject/ng-jedi-i18n#translate) to enable later internationalization.
 
-1. Métodos, classes, variáveis, etc... sempre escritos em inglês.
+1. Methods, classes, variables, etc... always written in english language.
 
-1. Parâmetros de métodos, métodos e variáveis sempre no formato camelCase.
+1. Methods names, parameters and variables always written using camelCase.
 
-1. Nome do recurso (controller, modal, service, etc.) sempre no formato PascalCase.
+1. Resource name (controller, modal, service, etc.) always using PascalCase.
 
-1. Todos os componentes/recursos devem ter o namespace no padrão:
+1. Every component/resource should use the default namespace:
 ```javascript
 app.[module].[submodule].[feature*].[component] 
 //e.g.: app.security.auth.userprofile.UserProfileCtrl
 ```
 
-1. Sempre usar a declaração **'use strict';** ao início de todo arquivo .js
+1. Always declare **'use strict';** at beggining of a js file
 
-1. Nomes de pastas e arquivos devem ser em minúsculo.
+1. Names, folders and files aways shoud use lowercase.
 
-1. Todos os componentes angular devem ter dependencias injetadas pelo nome, evitar declarar apenas no construtor do componente, uma vez que a minificação encurtará os nomes dos parâmetros.
+1. Every AngularJS component should have the dependencies injected by name, avoid declare just the component constructor, since the minification will shorten the parameters names.
 
-1. Fazer uso de logs atravez do componente [$log](https://docs.angularjs.org/api/ng/service/$log) em vez do console.log
+1. Use logs from the component [$log](https://docs.angularjs.org/api/ng/service/$log) instead of console.log.
 
-1. Não usar a function “alert” nativa do js, em vez disso usar o componente [toastr](https://github.com/Foxandxss/angular-toastr) ou [ng-jedi-dialogs](https://github.com/jediproject/ng-jedi-dialogs), ex.: 
+1. Do not use the native js function *alert*, use the component [toastr](https://github.com/Foxandxss/angular-toastr) or [ng-jedi-dialogs](https://github.com/jediproject/ng-jedi-dialogs) instead, ex.: 
 ```javascript
-toastr.success(“Mensagem”); 
-AlertHelper.addInfo(“Mensagem”);
+toastr.success(“Message”); 
+AlertHelper.addInfo(“Message”);
 ```
 
-1. Todo script envolvendo implementação angular deve ser carregado pelo [module]-app.js de seu módulo
+1. Every AngularJS script should be loaded by [module]-app.js of his module.
 
-1. Tratamento de exceções em chamadas às APIs deverá ser realizado por meio de interceptors disponíveis no componente [$httpProvider.interceptors](https://docs.angularjs.org/api/ng/service/$http#interceptors). Exceções envolvendo falhar de javascript, utilizar [$exceptionHandler](https://docs.angularjs.org/api/ng/service/$exceptionHandler).
+1. API's request exception should be treated by interceptors available at [$httpProvider.interceptors](https://docs.angularjs.org/api/ng/service/$http#interceptors) component. Exceptions involving Javascript failures should utilize [$exceptionHandler](https://docs.angularjs.org/api/ng/service/$exceptionHandler).
 
-###Controllers
+###<a name="Controllers"></a>Controllers
 
-1. Nomenclatura:
-  1. Pasta física: app\[**module**]\features\[**submodule\***]\[**feature**]\[**feature**]-ctrl.js
-  1. Nome Controller: app.[**module**].[**submodule\***].[**feature**].[**feature**]Ctrl
+1. Naming conventions:
+  1. Fisical folder: app\[**module**]\features\[**submodule\***]\[**feature**]\[**feature**]-ctrl.js
+  1. Controller names: app.[**module**].[**submodule\***].[**feature**].[**feature**]Ctrl
   1. Model: [**feature**]Model
   
-1. No corpo do controle deve-se seguir a seguinte ordem de declaração:
+1. The controller's body should follow the declaration order:
 
-  - Declaração dos serviços
+  - Services
 ```javascript
  var service = SecurityRestService.all('admin/feature');
  ```
-  - Declaração do vm
+  - Viewmodel (vm) declaration
 ```javascript
  var vm = this;
 ```
 
-  - Declaração do model e demais variáveis de controle
+  - Model declaration and further controls variables
 ```javascript
  vm.featureModel = { name: null };
-vm.pageSize = 0;
+ vm.pageSize = 0;
 ```
 
-  - Bind dos métodos
+  - Methods bindings
 ```javascript
  vm.filter = filter;
-vm.remove = remove;
-vm.clear = clear;
+ vm.remove = remove;
+ vm.clear = clear;
 ```
 
-  - Execuções de métodos, carregamentos de dados ou qualquer execução na inicialização da tela
+  - Methods executions, data loading or any other initialization execution for the page
 ```javascript
  loadSystems(function (systems) {
         vm.featureRegistrationModel.systems = systems;
 });
 ```
 
-  - Declaração dos métodos e seu statement
+  - Methods declarations and his statements
 ```javascript
  function loadSystems(success) {
         console.log('Recuperando systems');
@@ -302,7 +301,7 @@ vm.featureModel = { name: null };
 vm.pageSize = 10;
 ```
 
-###Services
+###<a name="Services"></a>Services
 
 1. Nomenclatura:
   - Pasta física: app\[**module**]\features\[**submodule\***]\[**feature**]\[**feature**]-service.js
@@ -311,7 +310,7 @@ vm.pageSize = 10;
 1. Caso o serviço seja apenas para abstrair o acesso às APIs, opte por [$resources](https://docs.angularjs.org/api/ngResource/service/%24resource)ou [Restangular](https://github.com/mgonto/restangular), ambos abstraem as operações de CRUD nas instancias dos objetos json. Com Restangular pode-se inclusive chama-lo diretamente no controller em vez de criar uma camada adicional, no componente [ng-jedi-factory](https://github.com/jediproject/ng-jedi-factory) esta é a abordagem utilizada, podendo-se injetar um Restangular service com os apontamentos de URL pre-configurados.
 1. São componentes singleton, portanto evite variáveis de negócio que possam se sobrepor em fluxos paralelos.
 
-###Views
+###<a name="Views"></a>Views
 
 1. Nomenclatura:
   - Pasta física: app\[**module**]\features\[**submodule\***]\[**feature**]\
@@ -331,7 +330,7 @@ ng-controller="app.framework.imports.importfiles.ImportFilesCtrl as importFilesC
 1. Css devem ser codificados/customizados apenas no arquivo **assets\css\app.css** , demais são de terceiros. Utilizar processador [SASS](http://sass-lang.com/) para geração deste css customizado.
 1. Navegação entre páginas deverá ser feito utilizando componente [ngRoute](https://docs.angularjs.org/api/ngRoute)
 
-###Directives
+###<a name="Directives"></a>Directives
 
 1. Diretivas sempre declaradas com o nome do módulo e submódulo, para evitar duplicidade e sobreposição em caso de projetos grandes e distribuídos
 2. Nomenclatura:
@@ -343,7 +342,7 @@ ng-controller="app.framework.imports.importfiles.ImportFilesCtrl as importFilesC
     - Nome diretiva: app-[**module**]-[**submodule\***]-[**feature**]-[**diretiva**]
 1. Caso utilize algum plugin [jQuery](https://jquery.com/) para renderizar elementos ou adicionar eventos, sempre realize tratamento dos eventos de destroy do escopo e dos elementos, para remover elementos e eventos adicionados pelo jQuery e não controlados pelo AngularJs.
 
-###Filters
+###<a name="Filters"></a>Filters
 
 1. Filters sempre declaradas com o nome do módulo e submódulo, para evitar duplicidade e sobreposição em caso de projetos grandes e distribuídos
 1. Nomenclatura:
@@ -355,16 +354,16 @@ ng-controller="app.framework.imports.importfiles.ImportFilesCtrl as importFilesC
     - Nome diretiva: app[**Module**][**Submodule\***][**Feature**][**Filter**]
 1. Evitar filters aninhados pois pode acarretar em problemas de performance.
 
-##Recommended Tools
+##<a name="Recommended-Tools"></a>Recommended Tools
 
-###Dependency Management - Bower vs NPM
+###<a name="Dependency-Management"></a>Dependency Management - Bower vs NPM
 
 1. [NPM](https://www.npmjs.com/) é utilizado para o gerenciamento de módulos em Node.js, destinado a gestão de ferramentas utilizadas como suporte e automação do desenvolvimento(builds, geração de código, tasks e afins). Assim como é capaz de gerenciar componentes de front-end quando utilizado em conjunto com o [Browserify](http://browserify.org/), porém esta prática não é recomendada por englobar libs web + backend NodeJS juntos.
   - Um ponto importante ao se utilizar o npm é que os arquivos da pasta **node\_modules** não devem ser versionados, apenas o arquivo **package.json**.
 1. [Bower](http://bower.io/) por sua vez foi criado especialmente para o gerenciamento de pacotes de front-end, sendo otimizado para este propósito. Portanto é o mais recomendado quando se trata de projetos web.
   - Um ponto importante ao se utilizar o bower é que os arquivos da pasta **bower\_components** não devem ser versionados, apenas o arquivo **bower.json**.
 
-###Build e Deploy
+###<a name="Build-and-Deploy"></a>Build and Deploy
 
 Como ferramenta de Task Runners, usados para automatizar processos de build e deploy, recomendamos usar Grunt, por ser bem difundido e possuir muitos plugins para resolver vários problemas envolvendo automatização.
 
@@ -394,7 +393,7 @@ Para auxílo no deploy, existem plugins que podem ser utilizados, como o própri
 
 Em ambiente de desenvolvimento, recomenda-se utilizar o módulo NodeJs http-server, que sobe rapidamente um servidor web de arquivos estáticos, existe plugins dele para execução integrada via grunt. Caso seja utilizado processador SASS, Compass Sprites e/ou outra task que necessite rodar após qualquer alteração em código e antes do acesso via browser, para testes de desenvolvimento, se quiser que tais tasks sejam executadas automaticamente após a modificação faça uso do plugin [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch).
 
-###Automated Tests
+###<a name="Automated-Tests"></a>Automated Tests
 
 Existem duas ferramentas de testes que são recomendadas pela documentação do AngularJs (escritos em Node.js). São elas:
 
@@ -403,7 +402,7 @@ Existem duas ferramentas de testes que são recomendadas pela documentação do 
 
 Ambas instanciam o navegador, carregam os arquivos previamente configurados, executam os testes e retornam seu resultado.
 
-###Code Generation
+###<a name="Code-Generation"></a>Code Generation
 
 É recomendado que se utilize geradores de código sempre que possível, para reduzir consideravelmente o tempo gasto com escrita de código repetitivo, incluindo:
 
@@ -416,7 +415,7 @@ Ambas instanciam o navegador, carregam os arquivos previamente configurados, exe
 - Utiliza de outras ferramentas no seu workflow como [Grunt](http://gruntjs.com/) e [Gump](https://www.npmjs.com/package/gump) para build, [bower](http://bower.io/) e [npm](https://www.npmjs.com/) para gerenciamento de pacotes.
 - É possível utilizar geradores criados por terceiros ou criar o seu.
 
-###Mocks
+###<a name="Mocks"></a>Mocks
 
 Mocks de API são bastante úteis quando o time de front-end não quer depender ou aguardar a finalização da API/back-end para construção das views.
 
@@ -426,7 +425,7 @@ Para gerar as mocks com o json-server de forma bem rápida, pode-se utilizar o [
 
 Quando for necessário criar retornos diferenciados, a partir dos dados de entrada, uma boa alternativa é usar o [apimocker](https://github.com/gstroup/apimocker).
 
-###Debugging
+###<a name="Debugging"></a>Debugging
 
 Recomenda-se não minificar, ofuscar ou agrupar os arquivos javascript, css e html para build de desenvolvimento, facilitando o debug da aplicação.
 
@@ -434,7 +433,7 @@ Ferramentas como Google Chrome e Firebug (para Firefox) são recomendadas para r
 
 Além dessas ferramentas é recomendado o uso do [AngularJS Batarang](https://github.com/angular/batarang) para depurar scope e watch no contexto do angular.
 
-##Components
+##<a name="Components"></a>Components
 
 Stack utilizada pelo [demo](https://github.com/jediproject/ng-jedi-demo) e [gerador](https://github.com/jediproject/generator-jedi) Jedi:
 
