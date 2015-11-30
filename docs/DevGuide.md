@@ -137,8 +137,8 @@
         },
     
         // kick start application
-        deps: ["app“]
-    });
+        deps: ["app"]
+    ]);
     ```
     
 ###CRUD
@@ -343,7 +343,7 @@ jd.factory.newFilter('yourFilter', [function () {
 </form>
 ```
 
-    Obs.: Telas de consulta/seleção deverão encobrir os campos e botões em uma jd-panel, com título padrão “Filtros” e a diretiva jd-toggle. Sempre que houver mais de um contexto em uma mesma tela, separar cada contexto em áres, através do jd-panel.
+    Obs.: Telas de consulta/seleção deverão encobrir os campos e botões em uma jd-panel, com título padrão "Filtros” e a diretiva jd-toggle. Sempre que houver mais de um contexto em uma mesma tela, separar cada contexto em áres, através do jd-panel.
 
 * Botões sempre abaixo dos campos, com a classe btn, dentro de uma div.row e div.col:
 ```html
