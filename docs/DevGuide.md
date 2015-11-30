@@ -82,12 +82,14 @@
 * Including new dependencies:
 
     * Install or download them to your machine using whatever you see fit. You can try using bower, e.g:
-    ```shell
+
+```shell
     bower install package-name --save
-    ```
+```
 
     * Add the path to the desired files to **assetsfiles.json**, specifying source ("*src*") and destination ("*dest*"). Source is the file you want to include in your project, and destination is where in your project should grunt copy that file to, e.g:
-	```json
+
+```json
     {
             "files": [
                 {
@@ -100,11 +102,11 @@
                 }
             ]
         }
-    ```
+```
     
     * Then include these deps in the new module on your Angular app. Open the **main.tpl.js** and do like in the following example:
     
-    ```javascript
+```javascript
     "use strict";
 
     require.config({
@@ -144,7 +146,7 @@
         // kick start application
         deps: ["app"]
     ]);
-    ```
+```
     
 ###CRUD
 
@@ -236,7 +238,7 @@
     //#endregion
 
     }]);
-    ```
+```
 
 * View
 
@@ -341,7 +343,8 @@ jd.factory.newFilter('yourFilter', [function () {
 ```html
 <form jd-panel jd-title="TÍTULO" ng-controller="ControllerName as controllerAlias">
 ```
-   Tip: modals don't need the ng-controller directive.
+
+Tip: modals don't need the ng-controller directive.
 
 * Always use at least one row to organize things inside the **form**:
 
@@ -390,7 +393,7 @@ jd.factory.newFilter('yourFilter', [function () {
 </form>
 ```
 
-    Tip: The button with the main action on a page should have the *btn-primary* class. It also should be the first button on the left (in case of multiple buttons aligned). All the other button elements should use the *btn-info* class, and there should be only one button with *btn-primary* in a page.
+Tip: The button with the main action on a page should have the *btn-primary* class. It also should be the first button on the left (in case of multiple buttons aligned). All the other button elements should use the *btn-info* class, and there should be only one button with *btn-primary* in a page.
 
 * Grids should use the **jd-table** directive
     
@@ -504,7 +507,7 @@ jd.factory.newFilter('yourFilter', [function () {
 	</span>
 </div>
 ```
-    Tip: The main div should have the **jd-input** directive and the input element only the **jd-validation-tooltip** attribute. If you set the input element with the **jd-input** directive the layout will break and not look good. 
+Tip: The main div should have the **jd-input** directive and the input element only the **jd-validation-tooltip** attribute. If you set the input element with the **jd-input** directive the layout will break and not look good. 
 
 * Buttons
     * Save:
