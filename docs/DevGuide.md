@@ -14,7 +14,7 @@
 
 * CORS + Headers + Restangular
 
-    ```javascript
+```javascript
     app.config(['$routeProvider', '$httpProvider', 'RestangularProvider', 'jedi.utilities.UtilitiesProvider',  function ($routeProvider, $httpProvider, RestangularProvider,  Utilities) {
     //...
 
@@ -29,11 +29,11 @@
 
     //...
     }]);
-    ```
+```
 
 * Routes
 
-    ```javascript
+```javascript
     var $routeProviderReference;
 
     app.config(['$routeProvider',  function ($routeProvider) {
@@ -77,7 +77,7 @@
             $route.reload();
         });
     }]);
-    ```
+```
 
 * Including new dependencies:
 
@@ -103,6 +103,7 @@
     ```
     
     * Then include these deps in the new module on your Angular app. Open the **main.tpl.js** and do like in the following example:
+    
     ```javascript
     "use strict";
 
@@ -149,7 +150,7 @@
 
 * Controller
 
-    ```javascript
+```javascript
     /*
         Your first page controller.
     */
@@ -297,6 +298,7 @@ jd.factory.newModal("yourModalDirective", 'app/view/yourModal.html', 'yourModalC
  	// we recommend writing the controller using the vm pattern
 }], {size: 'lg'});
 ```
+
 ```html
 <!-- using 'yourModalDirective'-->
 <button your-modal-directive></button>
