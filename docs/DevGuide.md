@@ -231,43 +231,44 @@
     }]);
 ```
 * View
-```html
-<form jd-panel jd-title="YourFeature" ng-controller="app.yourSystem.yourModule.yourFeature.YourFeature as yourFeatureCtrl">
 
-	 <div jd-panel jd-title="Filtros" jd-toggle>
-        <div class="row">
-            <input jd-input jd-label="Name" type="text" ng-model="yourFeatureCtrl.yourFeatureModel.nameFilter" />
-            <input jd-input jd-label="Alias" type="text" ng-model="yourFeatureCtrl.yourFeatureModel.aliasFilter" />
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <button class="btn btn-primary" ng-click="yourFeatureCtrl.filter()" jd-i18n>Filter</button>
-                <button class="btn btn-info" ng-click="yourFeatureCtrl.clear()" jd-i18n>Clear</button>
-                <button class="btn btn-info" ng-click="yourFeatureCtrl.openCreateModal()" jd-i18n>New</button>
-            </div>
-        </div>
-    </div>
-
-    <div jd-panel jd-title="Result" jd-toggle="yourFeatureCtrl.togglePanelResults">
-        <table jd-table="yourFeatureCtrl.resultTableConfig" jd-paginated>
-            <tbody>
-                <tr>
-                    <td jd-sortable jd-attribute="name" jd-title="Name"></td>
-                    <td jd-sortable jd-attribute="alias" jd-title="Alias"></td>
-                    <td jd-sortable jd-attribute="code" jd-title="Code"></td>
-                    <td jd-sortable jd-attribute="description" jd-title="Description"></td>
-                    <td jd-title="Actions" class="text-center" width="100px">
-                        <a href="javascript:;" jd-i18n title="Edit" ng-click="yourFeatureCtrl.openEditModal(item)"><i class="glyphicon glyphicon-pencil"></i></a>
-                        &nbsp;
-                        <a href="javascript:;" jd-i18n title="Remove" ng-click="yourFeatureCtrl.remove(item)"><i class="glyphicon glyphicon-remove"></i></a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-</form>
-```
+	```html
+	<form jd-panel jd-title="YourFeature" ng-controller="app.yourSystem.yourModule.yourFeature.YourFeature as yourFeatureCtrl">
+	
+		 <div jd-panel jd-title="Filtros" jd-toggle>
+	        <div class="row">
+	            <input jd-input jd-label="Name" type="text" ng-model="yourFeatureCtrl.yourFeatureModel.nameFilter" />
+	            <input jd-input jd-label="Alias" type="text" ng-model="yourFeatureCtrl.yourFeatureModel.aliasFilter" />
+	        </div>
+	        <div class="row">
+	            <div class="col-xs-12">
+	                <button class="btn btn-primary" ng-click="yourFeatureCtrl.filter()" jd-i18n>Filter</button>
+	                <button class="btn btn-info" ng-click="yourFeatureCtrl.clear()" jd-i18n>Clear</button>
+	                <button class="btn btn-info" ng-click="yourFeatureCtrl.openCreateModal()" jd-i18n>New</button>
+	            </div>
+	        </div>
+	    </div>
+	
+	    <div jd-panel jd-title="Result" jd-toggle="yourFeatureCtrl.togglePanelResults">
+	        <table jd-table="yourFeatureCtrl.resultTableConfig" jd-paginated>
+	            <tbody>
+	                <tr>
+	                    <td jd-sortable jd-attribute="name" jd-title="Name"></td>
+	                    <td jd-sortable jd-attribute="alias" jd-title="Alias"></td>
+	                    <td jd-sortable jd-attribute="code" jd-title="Code"></td>
+	                    <td jd-sortable jd-attribute="description" jd-title="Description"></td>
+	                    <td jd-title="Actions" class="text-center" width="100px">
+	                        <a href="javascript:;" jd-i18n title="Edit" ng-click="yourFeatureCtrl.openEditModal(item)"><i class="glyphicon glyphicon-pencil"></i></a>
+	                        &nbsp;
+	                        <a href="javascript:;" jd-i18n title="Remove" ng-click="yourFeatureCtrl.remove(item)"><i class="glyphicon glyphicon-remove"></i></a>
+	                    </td>
+	                </tr>
+	            </tbody>
+	        </table>
+	    </div>
+	
+	</form>
+	```
 
 ### Creating Services
 ```javascript
