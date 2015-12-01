@@ -334,19 +334,19 @@ ng-controller="app.framework.imports.importfiles.ImportFilesCtrl as importFilesC
 
 ###<a name="Directives"></a>Directives
 
-1. Diretivas sempre declaradas com o nome do módulo e submódulo, para evitar duplicidade e sobreposição em caso de projetos grandes e distribuídos
-2. Nomenclatura:
-  - Se geral para o módulo
-    - Arquivo: app\[**module**]\components\[**component**]\[**component**]-directive.js
-    - Nome diretiva: app-[**module**]-[**component**]-[**diretiva**]
-  - Se for de uma feature
-    - Arquivo: app\[**module**]\features\[**submodule\***]\[**feature**]\[**feature**]-directives.js
-    - Nome diretiva: app-[**module**]-[**submodule\***]-[**feature**]-[**diretiva**]
-1. Caso utilize algum plugin [jQuery](https://jquery.com/) para renderizar elementos ou adicionar eventos, sempre realize tratamento dos eventos de destroy do escopo e dos elementos, para remover elementos e eventos adicionados pelo jQuery e não controlados pelo AngularJs.
+1. Directives should be always declared with the module and submodule names, to avoid duplicates.
+2. Naming Conventions:
+  - Module's general directive
+    - File: app\[**module**]\components\[**component**]\[**component**]-directive.js
+    - Directive name: app-[**module**]-[**component**]-[**diretiva**]
+  - If it's a feature.
+    - File: app\[**module**]\features\[**submodule\***]\[**feature**]\[**feature**]-directives.js
+    - Directive name: app-[**module**]-[**submodule\***]-[**feature**]-[**diretiva**]
+1. If you use some [jQuery](https://jquery.com/) plugin for render elements or add events, always treat those events on element's destroy scope, to remove the elements added by JQuery that are not controlled by AngularJS.
 
 ###<a name="Filters"></a>Filters
 
-1. Filters sempre declaradas com o nome do módulo e submódulo, para evitar duplicidade e sobreposição em caso de projetos grandes e distribuídos
+1. Filters should be always declared with the module and submodule names, to avoid duplicates.
 1. Nomenclatura:
   - Se geral para o módulo
     - Arquivo: app\[**module**]\components\[**component**]\[**component**]-filter.js
