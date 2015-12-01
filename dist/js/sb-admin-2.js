@@ -19,10 +19,13 @@ function openLink(event) {
     if (href) {
         if ($(this).is('.ajax')) {
             var URL = href;
-            if (URL.indexOf('http') != 0 || URL.indexOf('https://github.com/jediproject/') == 0) {
-                URL = 'https://raw.githubusercontent.com/jediproject/'+href.replace('https://github.com/jediproject/', '')+'/master/README.md';
+            // testa se é um doc do proprio repositório deo jediprojects
+            if ($(this).is('.docs')) {
+                var URL = 'https://raw.githubusercontent.com/jediproject/jediproject.github.io/master/docs/' + href + '.md';
+            } else if (URL.indexOf('http') != 0 || URL.indexOf('https://github.com/jediproject/') == 0) {
+                URL = 'https://raw.githubusercontent.com/jediproject/' + href.replace('https://github.com/jediproject/', '') + '/master/README.md';
             }
-            $.get(URL, function(content) {
+            $.get(URL, function (content) {
                 // se url for modificada é pq é um .md
                 if (URL != href) {
                     $('#content').empty().append($('<div class="container-fluid"></div>').html(marked(content)));
@@ -33,7 +36,7 @@ function openLink(event) {
                     }
                 }
                 // qualquer link para componentes jedi serão abertos pelo openLink
-                $('#content').find("a[href*='jedi']").addClass('ajax').click(openLink).each(function(){
+                $('#content').find("a[href*='jedi']").addClass('ajax').click(openLink).each(function () {
                     if (this.href.indexOf('&') > -1) {
                         this.href = this.href.substring(this.href.indexOf('https://github'), this.href.indexOf('&'));
                     }
