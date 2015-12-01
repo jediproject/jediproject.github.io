@@ -109,12 +109,12 @@ Base reference: https://scotch.io/tutorials/angularjs-best-practices-directory-s
 
 ```
 assets --> external components or code implementation is not linked to SPA
-assets\libs --> external libraries (ex: angular, jquery, bootstrap, etc)
-assets\css --> third-party css
-assets\css\app.css --> custom css in the project (the only one that must be modified)
-assets\fonts --> sources used by the project
-assets\img --> images used in assembling the site/project
-assets\js --> JS files not AngularJS created/customized in the project
+assets/libs --> external libraries (ex: angular, jquery, bootstrap, etc)
+assets/css --> third-party css
+assets/css/app.css --> custom css in the project (the only one that must be modified)
+assets/fonts --> sources used by the project
+assets/img --> images used in assembling the site/project
+assets/js --> JS files not AngularJS created/customized in the project
 ```
 
 This structure is used by several market components, for example, Twitter Bootstrap uses these folder paths on their CSS, to obtain images, fonts, etc.
@@ -123,43 +123,43 @@ This structure is used by several market components, for example, Twitter Bootst
 
 ```
 app --> SPA application components
-app\app.js --> JS file with general application settings
-app\common --> foundation technical module, containing general components of the app
-app\common\env\common-env.js --> json file with general environment variables
-app\common\i18n\resources_[en|pt|*].js --> json file with resources for i18n
-app\common\components --> specialized components and resources for the project
-app\common\components\[component] --> organized by component, containing js, html...
-app\common\components\[component]\[component].js
-app\common\components\[component]\[component].html
-app\common\components\header --> layout component for create the header
-app\common\components\navigation --> layout component for create the menu
-app\common\features\[submodule]\[feature] --> global features/layouts common of every project
+app/app.js --> JS file with general application settings
+app/common --> foundation technical module, containing general components of the app
+app/common/env/common-env.js --> json file with general environment variables
+app/common/i18n/resources_[en|pt|*].js --> json file with resources for i18n
+app/common/components --> specialized components and resources for the project
+app/common/components/[component] --> organized by component, containing js, html...
+app/common/components/[component]/[component].js
+app/common/components/[component]/[component].html
+app/common/components/header --> layout component for create the header
+app/common/components/navigation --> layout component for create the menu
+app/common/features/[submodule]/[feature] --> global features/layouts common of every project
 	Suggested route: /common/[submodule]/[feature]
-app\common\features\auth --> glogal screens related to authentication.
-app\common\features\auth\signin --> sign in screen
+app/common/features/auth --> glogal screens related to authentication.
+app/common/features/auth/signin --> sign in screen
 	Route: /common/auth/signin
-app\common\features\auth\signup --> sign up screen
+app/common/features/auth/signup --> sign up screen
 	Route: /common/auth/signup
 ```
 
 ###<a name="Module-Structure"></a>Module Structure
 
 ```
-app\[module]
-app\[module]\[module]-app.js --> js file with module settings
-app\[module]\env\[module]-env.js --> json file with module environment variables
-app\[module]\i18n\resources_[en|pt|*].js --> json file with resources for i18n
-app\[module]\components\[component]\ --> specialized module components 
-app\[module]\components\[component]\[component].js
-app\[module]\components\[component]\[component].html
-app\[module]\features\[submodule*]\[feature] --> module features/pages
+app/[module]
+app/[module]/[module]-app.js --> js file with module settings
+app/[module]/env/[module]-env.js --> json file with module environment variables
+app/[module]/i18n/resources_[en|pt|*].js --> json file with resources for i18n
+app/[module]/components/[component]/ --> specialized module components 
+app/[module]/components/[component]/[component].js
+app/[module]/components/[component]/[component].html
+app/[module]/features/[submodule*]/[feature] --> module features/pages
 	Rota recomendada: /[module]/[submodule]/[feature]
-app\[module]\features\[submodule*]\[feature]\[feature]-ctrl.js --> controller
-app\[module]\features\[submodule*]\[feature]\[feature]-service.js --> service
-app\[module]\features\[submodule*]\[feature]\[feature]-directive.js --> directive
-app\[module]\features\[submodule*]\[feature]\[feature]-filter.js --> filter
-app\[module]\features\[submodule*]\[feature]\[feature].html --> page
-app\[module]\features\[submodule*]\[feature]\[feature]\view\*.html --> if more than 1 html
+app/[module]/features/[submodule*]/[feature]/[feature]-ctrl.js --> controller
+app/[module]/features/[submodule*]/[feature]/[feature]-service.js --> service
+app/[module]/features/[submodule*]/[feature]/[feature]-directive.js --> directive
+app/[module]/features/[submodule*]/[feature]/[feature]-filter.js --> filter
+app/[module]/features/[submodule*]/[feature]/[feature].html --> page
+app/[module]/features/[submodule*]/[feature]/[feature]/view/*.html --> if more than 1 html
 ```
 
 In this template, it is proposed to separate reusable components of functional pages. Understood as components those common features or reusable mechanisms (directives, filters, interceptors in AngularJS)... Features, instead, would be the functional pages, where we have the HTML that makes up the whole page and its controller (and other pages specific resources).
@@ -196,15 +196,15 @@ bower install [nome_dep] --save && grunt
 
 1. Resources linked to a feature must be created in the feature folder of the structure
 ```javascript
-app\[module]\features\[submodule*]\[feature]\[feature resources]
+app/[module]/features/[submodule*]/[feature]/[feature resources]
 ```
 
 1. Components must be created in the structure below and should not be a full feature, but reusable resources in features/panels
 ```javascript
-app\[module]\components\[component]\[component resources]
+app/[module]/components/[component]/[component resources]
 ```
 
-1. Third-party scripts should not be changed, instead try to create a new version and publish the bower, in the worst case customize and version in the assets folder **\js\**
+1. Third-party scripts should not be changed, instead try to create a new version and publish the bower, in the worst case customize and version in the assets folder **/js/**
 
 1. Hardcoded values that represent directories or information that can be changed according to the environment, must be set in **[*module*]-**env.js of the specific module. The [ng-jedi-factory](https://github.com/jediproject/ng-jedi-factory) json component is loaded into envSettings variable and constant can be accessed as follows:
 ```javascript
@@ -246,8 +246,8 @@ AlertHelper.addInfo(“Message”);
 ###<a name="Controllers"></a>Controllers
 
 1. Naming conventions:
-  1. Physical folder: app\[**module**]\features\[**submodule\***]\[**feature**]\[**feature**]-ctrl.js
-  1. Controller names: app.[**module**].[**submodule\***].[**feature**].[**feature**]Ctrl
+  1. Physical folder: app/[**module**]/features/[**submodule/***]/[**feature**]/[**feature**]-ctrl.js
+  1. Controller names: app.[**module**].[**submodule/***].[**feature**].[**feature**]Ctrl
   1. Model: [**feature**]Model
   
 1. The controller's body should follow the declaration order:
@@ -304,8 +304,8 @@ vm.pageSize = 10;
 ###<a name="Services"></a>Services
 
 1. Naming conventions:
-  - Physical Folder: app\[**module**]\features\[**submodule\***]\[**feature**]\[**feature**]-service.js
-  - Controller name: app.[**module**].[**submodule\***].[**feature**].[**feature**]Service
+  - Physical Folder: app/[**module**]/features/[**submodule/***]/[**feature**]/[**feature**]-service.js
+  - Controller name: app.[**module**].[**submodule/***].[**feature**].[**feature**]Service
 1. Opt for service (if it is simple services) or provider (if it is a service that require a previous configuration).
 1. If the service is only for abstract the API calls, use [$resources](https://docs.angularjs.org/api/ngResource/service/%24resource)ou [Restangular](https://github.com/mgonto/restangular), both abstract the CRUD operations in json object instances. With Restangular we can even call direct by controller instead of create an additional call, this approach is used in component [ng-jedi-factory](https://github.com/jediproject/ng-jedi-factory), allowing injection of a Restangular service for pre-defined URL references.
 1. Are singleton components, so avoid use business variables that could overlap in parallel streams.
@@ -313,7 +313,7 @@ vm.pageSize = 10;
 ###<a name="Views"></a>Views
 
 1. Naming conventions:
-  - Physical folder: app\[**module**]\features\[**submodule\***]\[**feature**]\
+  - Physical folder: app/[**module**]/features/[**submodule/***]/[**feature**]/
   - Page name: [**feature**].html
 1. Always built with standard HTML, with structure and css preferentially using [Twitter Bootstrap](http://getbootstrap.com/), without javascript and using only AngularJS directives
 1. ng-repeat should always be declared using [track by](http://www.bennadel.com/blog/2556-using-track-by-with-ngrepeat-in-angularjs-1-2.htm), to avoid performance issues.
@@ -327,9 +327,9 @@ ng-controller="app.framework.imports.importfiles.ImportFilesCtrl as importFilesC
 1. If it's necessary apply internationalization, use the jd-i18n directive in all HTML text elements
   ```
   <jd-i18n>Some text<jd-i18n>
-  or <a jd-i18n>Some text<\a>
+  or <a jd-i18n>Some text</a>
   ```
-1. Css should be created/customized only in **assets\css\app.css** file, other css are third-party. Use the processor [SASS](http://sass-lang.com/) to generate a custom css.
+1. Css should be created/customized only in **assets/css/app.css** file, other css are third-party. Use the processor [SASS](http://sass-lang.com/) to generate a custom css.
 1. Navigation between pages should use [ngRoute](https://docs.angularjs.org/api/ngRoute) component.
 
 ###<a name="Directives"></a>Directives
@@ -337,142 +337,142 @@ ng-controller="app.framework.imports.importfiles.ImportFilesCtrl as importFilesC
 1. Directives should be always declared with the module and submodule names, to avoid duplicates.
 2. Naming Conventions:
   - Module's general directive
-    - File: app\[**module**]\components\[**component**]\[**component**]-directive.js
+    - File: app/[**module**]/components/[**component**]/[**component**]-directive.js
     - Directive name: app-[**module**]-[**component**]-[**diretiva**]
   - If it's a feature.
-    - File: app\[**module**]\features\[**submodule\***]\[**feature**]\[**feature**]-directives.js
-    - Directive name: app-[**module**]-[**submodule\***]-[**feature**]-[**diretiva**]
+    - File: app/[**module**]/features/[**submodule/***]/[**feature**]/[**feature**]-directives.js
+    - Directive name: app-[**module**]-[**submodule/***]-[**feature**]-[**diretiva**]
 1. If you use some [jQuery](https://jquery.com/) plugin for render elements or add events, always treat those events on element's destroy scope, to remove the elements added by JQuery that are not controlled by AngularJS.
 
 ###<a name="Filters"></a>Filters
 
 1. Filters should be always declared with the module and submodule names, to avoid duplicates.
-1. Nomenclatura:
-  - Se geral para o módulo
-    - Arquivo: app\[**module**]\components\[**component**]\[**component**]-filter.js
-    - Nome diretiva: app[**Module**][**Component**][**Filter**]
-  - Se for de uma feature
-    - Arquivo: app\[**module**]\features\[**feature**]\[**feature**]-filters.js
-    - Nome diretiva: app[**Module**][**Submodule\***][**Feature**][**Filter**]
-1. Evitar filters aninhados pois pode acarretar em problemas de performance.
+1. Naming Conventions:
+  - Module's general directive
+    - File: app/[**module**]/components/[**component**]/[**component**]-filter.js
+    - Directive name: app[**Module**][**Component**][**Filter**]
+  - If it's a feature
+    - File: app/[**module**]/features/[**feature**]/[**feature**]-filters.js
+    - Directive name: app[**Module**][**Submodule**][**Feature**][**Filter**]
+1. Avoid nested filters, it could cause performance problems.
 
 ##<a name="Recommended-Tools"></a>Recommended Tools
 
 ###<a name="Dependency-Management"></a>Dependency Management - Bower vs NPM
 
-1. [NPM](https://www.npmjs.com/) é utilizado para o gerenciamento de módulos em Node.js, destinado a gestão de ferramentas utilizadas como suporte e automação do desenvolvimento(builds, geração de código, tasks e afins). Assim como é capaz de gerenciar componentes de front-end quando utilizado em conjunto com o [Browserify](http://browserify.org/), porém esta prática não é recomendada por englobar libs web + backend NodeJS juntos.
-  - Um ponto importante ao se utilizar o npm é que os arquivos da pasta **node\_modules** não devem ser versionados, apenas o arquivo **package.json**.
-1. [Bower](http://bower.io/) por sua vez foi criado especialmente para o gerenciamento de pacotes de front-end, sendo otimizado para este propósito. Portanto é o mais recomendado quando se trata de projetos web.
-  - Um ponto importante ao se utilizar o bower é que os arquivos da pasta **bower\_components** não devem ser versionados, apenas o arquivo **bower.json**.
+1. [npm](https://www.npmjs.com/) is used as the default module manager of Node.js, meant to manage tools used support and automate development (builds, code generation, tasks and such). Is capable of generating front-end components if used with [Browserify](http://browserify.org/), but that's not encouraged because it mix web libs and backend together, and that can be messy.
+  - The files from **node_modules** folder shouldn't be versioned, only the **package.json** file.
+1. [Bower](http://bower.io/) is designed especifically to manage front-end packages and optimized for that, being the recommended method for the web libs in the project.
+  - The files from **bower_components** folder shouldn't be versioned, only the **bower.json** file.
 
 ###<a name="Build-and-Deploy"></a>Build and Deploy
 
-Como ferramenta de Task Runners, usados para automatizar processos de build e deploy, recomendamos usar Grunt, por ser bem difundido e possuir muitos plugins para resolver vários problemas envolvendo automatização.
+As a Task Runner tool we recomend using Grunt, as it is wildely used and has various plugins to solve many automatization problems.
 
-Para o processo de Build, considere como fundamental a utilização dos seguintes pontos:
+In the build process it is fundamental to do the following:
 
-- Cópia de arquivos entre diretórios, ex: cópia dos arquivos da pasta bower\_components para a pasta assets/, ou mesmo para gerar uma pasta de build, contendo apenas arquivos que serão implantados
-  - ○○use o plugin [grunt-contrib-copy](https://github.com/gruntjs/grunt-contrib-copy)
-- Geração dos arquivos de configuração por ambiente, ex.: [module]-env.json
-  - ○○use o plugin [grunt-replace](https://www.npmjs.com/package/grunt-replace)
-- Verificar sintaxe e eventuais erros nos arquivos javascripts
-  - ○○use o plugin [grunt-contrib-jshint](https://github.com/gruntjs/grunt-contrib-jshint)
-- Minificação/compressão de arquivos JS, CSS, HTML e imagens
-  - ○○para JS, use o plugin [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify)
-  - ○○para CSS, use o plugin [grunt-contrib-cssmin](https://github.com/gruntjs/grunt-contrib-cssmin)
-  - ○○para HTML, use o plugin [grunt-contrib-htmlmin](https://github.com/gruntjs/grunt-contrib-htmlmin)
-  - ○○para imagens, use o plugin [grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin)
-- Renomear arquivos de implantação para evitar cache pelo browser de versões antigas
-  - ○○use o plugin [grunt-filerev](https://github.com/yeoman/grunt-filerev)
-  - ○○no demo e gerador jedi é utilizado este plugin juntamente com outros passos para gerar um arquivo de-para entre o arquivo original e o arquivo com a hash concatenada, que servirá para uso integrado ao requirejs, no mapeamento de rotas onde o controlador é carregado dinamicamente. No componente [ng-jedi-factory](https://github.com/jediproject/ng-jedi-factory) o método getFileVersion pode ser usado para esta finalidade durante execução da aplicação.
-- Execução de testes automatizados, tanto protractor quanto karma possuem plugins em grunt para sua execução.
-- Geração dos CSS a partir do processador SASS
-  - ○○use o plugin [grunt-contrib-sass](https://github.com/gruntjs/grunt-contrib-sass)
-- "Concatenação" de imagens em uma única imagem com classes css posicionando em cada imagem, estratégia conhecida como Compass Sprites
-  - ○○usar o plugin [grunt-contrib-compass](https://github.com/gruntjs/grunt-contrib-compass)
+- Copying files between folders. E.g.: copying files from folder *bower_components*  to *assets*, or even to generate a build folder containing only the files to deploy. 
+  - use the plugin [grunt-contrib-copy](https://github.com/gruntjs/grunt-contrib-copy)
+- Generating the config file for each environment, e.g.: *[module]-env.json*.
+  - use the plugin [grunt-replace](https://www.npmjs.com/package/grunt-replace)
+- Check syntax, errors and style in the javascript files
+  - use the plugin [grunt-contrib-jshint](https://github.com/gruntjs/grunt-contrib-jshint)
+- Minifying/compressing files: JS, CSS, HTML and images
+  - to JS, use the plugin [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify)
+  - to CSS, use the plugin [grunt-contrib-cssmin](https://github.com/gruntjs/grunt-contrib-cssmin)
+  - to HTML, use the plugin [grunt-contrib-htmlmin](https://github.com/gruntjs/grunt-contrib-htmlmin)
+  - to images, use the plugin [grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin)
+- Renaming files to avoid browsers using cache. Known  as Cache Busting
+  - use the plugin [grunt-filerev](https://github.com/yeoman/grunt-filerev)
+  - on the jedi generator and the demo this plugin is used together with another steps that creat a map between the original file and the "hashed" version, so it can be used with requirejs on the route mapping where a controller is dynamically loaded. The *getFileVersion* function of the [ng-jedi-factory](https://github.com/jediproject/ng-jedi-factory) component can be used to check this mapping and get the current name of the file.
+- Automated test execution, protractor and karma both have grunt plugins to be executed.
+- Generating CSS from SASS processors
+  - use the plugin [grunt-contrib-sass](https://github.com/gruntjs/grunt-contrib-sass)
+- "Concat" of images in one single image with css classes positioning in each image, estrategy known as Compass Sprites.
+  - use the plugin [grunt-contrib-compass](https://github.com/gruntjs/grunt-contrib-compass)
 
-Para auxílo no deploy, existem plugins que podem ser utilizados, como o próprio [grunt-contrib-copy](https://github.com/gruntjs/grunt-contrib-copy), mas vai depender de qual é o servidor web e como será a transferência do código para ele. Existem plugins para conexão ftp, post de arquivos via http, dentre outros.
+To help deploying, there are a few plugins that can be used, but that ultimately depends on the on the web server and how the files are goning to be transfered to it. There are plugins that works with frp connections, http post of files, and others. dentre outros.
 
-Em ambiente de desenvolvimento, recomenda-se utilizar o módulo NodeJs http-server, que sobe rapidamente um servidor web de arquivos estáticos, existe plugins dele para execução integrada via grunt. Caso seja utilizado processador SASS, Compass Sprites e/ou outra task que necessite rodar após qualquer alteração em código e antes do acesso via browser, para testes de desenvolvimento, se quiser que tais tasks sejam executadas automaticamente após a modificação faça uso do plugin [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch).
+In the develop environment, is recomended to use the NodeJs module http-server, that quickly starts a web server of static files, it has plugins to integrate with grunt. If a SASS processor is used, Compass Sprites and/or any other task that needs to run after any code change and before the browser access it, to execute tests on development, you can use the plugin [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch).
 
 ###<a name="Automated-Tests"></a>Automated Tests
 
-Existem duas ferramentas de testes que são recomendadas pela documentação do AngularJs (escritos em Node.js). São elas:
+There are two testing tools recommended on the Angularjs docs. They are:
 
-1. [Karma](http://karma-runner.github.io/0.13/index.html): test runner para testes unitários, fazendo uso das ferramentas [mocha](https://mochajs.org/) (test framework), [chai](http://chaijs.com/) (assertion library) e [jasmine](http://jasmine.github.io/) para a escrita dos testes.
-1. [Protractor](https://angular.github.io/protractor/): framework para a escrita de testes end-to-end (e2e).
+1. [Karma](http://karma-runner.github.io/0.13/index.html): test runner for unity testing, uses [mocha](https://mochajs.org/) (test framework), [chai](http://chaijs.com/) (assertion library) and [jasmine](http://jasmine.github.io/) to write the tests.
+1. [Protractor](https://angular.github.io/protractor/): framework to write end-to-end tests (e2e).
 
-Ambas instanciam o navegador, carregam os arquivos previamente configurados, executam os testes e retornam seu resultado.
+Both run a browser, load the files, execute tests and then return with the tests results.
 
 ###<a name="Code-Generation"></a>Code Generation
 
-É recomendado que se utilize geradores de código sempre que possível, para reduzir consideravelmente o tempo gasto com escrita de código repetitivo, incluindo:
+It is recommended that code generators are used as much as possible to reduce the time spent writting repetitive codes like:
 
-- Cruds padronizados.
-- Mecanismos recorrentes.
-- v0 do projeto.
+- Standard CRUDs.
+- Recurrign mechanisms.
+- Project v0.
 
-[Yeoman](http://yeoman.io/) é um projeto da comunidade que reúne um conjunto de geradores e é extremamente recomendado.
+[Yeoman](http://yeoman.io/) is an open source project that gather together tons of generators and is extremely recomended.
 
-- Utiliza de outras ferramentas no seu workflow como [Grunt](http://gruntjs.com/) e [Gump](https://www.npmjs.com/package/gump) para build, [bower](http://bower.io/) e [npm](https://www.npmjs.com/) para gerenciamento de pacotes.
-- É possível utilizar geradores criados por terceiros ou criar o seu.
+- It uses a set of other tools on its workflow, like [Grunt](http://gruntjs.com/) e [Gump](https://www.npmjs.com/package/gump) to build, [bower](http://bower.io/) and [npm](https://www.npmjs.com/) to manage packages
+- Is possible to use thirdy part generators, or even your own.
 
 ###<a name="Mocks"></a>Mocks
 
-Mocks de API são bastante úteis quando o time de front-end não quer depender ou aguardar a finalização da API/back-end para construção das views.
+API Mocks are usefull to separate front and back-end development, so both can occur simultaneously.
 
-Utilize o [json-server](https://github.com/typicode/json-server) para fazer mocks de serviços REST, ele possui suporte a routes, filters, slice, sort, range, full text search e relationships.
+Use [json-server](https://github.com/typicode/json-server) to create REST services mocks, it supports routes, filtesr, slice, sort, range, full text search and relationships.
 
-Para gerar as mocks com o json-server de forma bem rápida, pode-se utilizar o [json-server-init](https://www.npmjs.com/package/json-server-init), que possui um wizard bem facilitado.
+To quickly generate mocks with json-server use [json-server-init](https://www.npmjs.com/package/json-server-init), it has an easy to use wizard.
 
-Quando for necessário criar retornos diferenciados, a partir dos dados de entrada, uma boa alternativa é usar o [apimocker](https://github.com/gstroup/apimocker).
+When it's necessary to have different responses based on input data a good alternative is to use the [apimocker](https://github.com/gstroup/apimocker).
 
 ###<a name="Debugging"></a>Debugging
 
-Recomenda-se não minificar, ofuscar ou agrupar os arquivos javascript, css e html para build de desenvolvimento, facilitando o debug da aplicação.
+In order to be possible to debug the application, it's not recommended to minify, obfuscate or group the files to build in the develop environment.
 
-Ferramentas como Google Chrome e Firebug (para Firefox) são recomendadas para realização de debugging, elas permitem depuração e manipulação de javascript e css, além de recursos para Network Debugging.
+Using the Google Chrome developer tools and Firebug (to Firefox) are recommended to debug the application, they allow debugging and manipulating js and css files and also provide Networking Debugging tools.
 
-Além dessas ferramentas é recomendado o uso do [AngularJS Batarang](https://github.com/angular/batarang) para depurar scope e watch no contexto do angular.
+On top of that it is also recommended the use of [AngularJS Batarang](https://github.com/angular/batarang) to look at the scope and watch contexts of angular.
 
 ##<a name="Components"></a>Components
 
-Stack utilizada pelo [demo](https://github.com/jediproject/ng-jedi-demo) e [gerador](https://github.com/jediproject/generator-jedi) Jedi:
+The stack used in the [demo](https://github.com/jediproject/ng-jedi-demo) and [generator](https://github.com/jediproject/generator-jedi) Jedi:
 
 - [AngularJs 1.4.4](https://docs.angularjs.org)
 - [Requirejs](http://requirejs.org/) - lazy load scripts
-- [AngularAMD](https://github.com/marcoslin/angularAMD) - integrador AngularJs+requirejs
-- [Restangular](https://github.com/mgonto/restangular) - usado para abstrair camada service
-- [Twitter Bootstrap](http://getbootstrap.com/) - componentes bootstrap integrados ao AngularJs
-- [lodash](https://lodash.com/) - mecanismo para auxílio na manipulação de arrays, strings, etc.
-- [angular-loading-bar](http://chieffancypants.github.io/angular-loading-bar/) - componente para exibição de barras de progresso
-- [angular-file-upload](https://github.com/nervgh/angular-file-upload) - mecanismo para realização de upload de arquivos
-- [angular-ngMask](https://github.com/candreoliveira/ngMask) - componente de máscara
-- [angular-toastr](https://github.com/Foxandxss/angular-toastr) - lib para apresentar mensagens no formato toastr
-- [file-saver-saveas-js](https://github.com/eligrey/FileSaver.js/) - lib para salvar arquivos (download)
-- [moment](http://momentjs.com/) - manipulação de datas
-- [eonasdan-bootstrap-datetimepicker](https://github.com/Eonasdan/bootstrap-datetimepicker) - componente para datetimepicker com bootstrap
-- [ng-currency-mask](https://github.com/VictorQueiroz/ngCurrencyMask) - componente de máscara para valores decimais
-- [angular-dynamic-locale](https://github.com/lgalfaso/angular-dynamic-locale) - mecanismo para carregamento dinâmico do ngLocale
-- [Protractor](https://angular.github.io/protractor/) - mecanismo para testes de tela
-- [Karma](http://karma-runner.github.io/0.13/index.html) - mecanismo para testes unitários
-- [Bower](http://bower.io/) - tool para versionamentos de libs
-- [npm](https://www.npmjs.com/) - tool para versionamentos de libs
-- [Grunt](http://gruntjs.com/) - tool para execução de builds
-- [apimocker](https://github.com/gstroup/apimocker) - tool para mocks estáticas
-- [json-server](https://github.com/typicode/json-server) - tool para mocks de CRUDs
-- [http-server](https://www.npmjs.com/package/http-server) - servidor web para sites estáticos
-- [Yeoman](http://yeoman.io/) - ferramenta para geração de código
+- [AngularAMD](https://github.com/marcoslin/angularAMD) - integrates AngularJs+requirejs
+- [Restangular](https://github.com/mgonto/restangular) - used to abstract the service layer
+- [Twitter Bootstrap](http://getbootstrap.com/) - bootstrap components integrated with AngularJs
+- [lodash](https://lodash.com/) - helps manipulating arrays, strings, etc. in js
+- [angular-loading-bar](http://chieffancypants.github.io/angular-loading-bar/) - progress bar component
+- [angular-file-upload](https://github.com/nervgh/angular-file-upload) - file upload mechanism
+- [angular-ngMask](https://github.com/candreoliveira/ngMask) - mask component
+- [angular-toastr](https://github.com/Foxandxss/angular-toastr) - show "toast" messages
+- [file-saver-saveas-js](https://github.com/eligrey/FileSaver.js/) - download files lib
+- [moment](http://momentjs.com/) - Date and Time manipulating lib
+- [eonasdan-bootstrap-datetimepicker](https://github.com/Eonasdan/bootstrap-datetimepicker) - Datetimepicker component with bootstrap
+- [ng-currency-mask](https://github.com/VictorQueiroz/ngCurrencyMask) - mask component for money values
+- [angular-dynamic-locale](https://github.com/lgalfaso/angular-dynamic-locale) - dynamic loading of ngLocale
+- [Protractor](https://angular.github.io/protractor/) - layout tests mechanism
+- [Karma](http://karma-runner.github.io/0.13/index.html) - unit testing mechanism
+- [Bower](http://bower.io/) - lib/packages management tool
+- [npm](https://www.npmjs.com/) - lib/packages management tool
+- [Grunt](http://gruntjs.com/) - build tool
+- [apimocker](https://github.com/gstroup/apimocker) - static mocks tool
+- [json-server](https://github.com/typicode/json-server) - CRUD mocks tools
+- [http-server](https://www.npmjs.com/package/http-server) - static sites web server
+- [Yeoman](http://yeoman.io/) - code generating support tool
 
-Atualmente o Jedi Project conta com os seguintes componentes:
+Currently we have the following components here at the Jedi Project:
 
-- [ng-jedi-activities](https://github.com/jediproject/ng-jedi-activities): gerencia atividades em 2º plano (ex: download)
-- [ng-jedi-dialogs](https://github.com/jediproject/ng-jedi-dialogs): componente para apresentação de alertas e modais customizadas
-- [ng-jedi-table](https://github.com/jediproject/ng-jedi-table): grid paginado em memória ou via API
-- [ng-jedi-security](https://github.com/jediproject/ng-jedi-security): módulo de autenticação/autorização via token
-- [ng-jedi-factory](https://github.com/jediproject/ng-jedi-factory): facilitador na criação de componentes em AngularJs (controllers, services. directives, filters…), carregamento de módulos dinamicamente e tratamento de versão dos arquivos estáticos, integrado ao grunt-filerev
-- [ng-jedi-utilities](https://github.com/jediproject/ng-jedi-utilities): dunções, diretivas e filtros úteis e reutilizáveis (ex: validação de CPF, CNPJ, tratamentos para CORS, máscaras padrões, etc)
-- [ng-jedi-loading](https://github.com/jediproject/ng-jedi-loading): barra de progresso ou loading exibidas através de interceptor de requisições http
-- [ng-jedi-breadcrumb](https://github.com/jediproject/ng-jedi-breadcrumb): componente para apresentar a navegação estruturada em formato breadcrumb
-- [ng-jedi-i18n](https://github.com/jediproject/ng-jedi-i18n): componente de internacionalização
-- [ng-jedi-layout](https://github.com/jediproject/ng-jedi-layout): componentes de tela prontos para uso com uma simples diretiva (Input, Datepicker, Modais, TreeView, Tooltip, Panel, etc)
+- [ng-jedi-activities](https://github.com/jediproject/ng-jedi-activities): manage time-consuming tasks on yout page (e.g.: downloads)
+- [ng-jedi-dialogs](https://github.com/jediproject/ng-jedi-dialogs): custom modals and alerts component
+- [ng-jedi-table](https://github.com/jediproject/ng-jedi-table): api or memory paginated grids
+- [ng-jedi-security](https://github.com/jediproject/ng-jedi-security): authentication/autorization module using token
+- [ng-jedi-factory](https://github.com/jediproject/ng-jedi-factory): facilitate the creation of Angularjs components (controllers, services, directives, filters, etc.), dynamic loading of modules and versioning of static files, integrates with grunt-filerev
+- [ng-jedi-utilities](https://github.com/jediproject/ng-jedi-utilities): useful directives, functions, filters, and things that can be reused in the entire app
+- [ng-jedi-loading](https://github.com/jediproject/ng-jedi-loading): progress or loading bars that work by intercepting http requests 
+- [ng-jedi-breadcrumb](https://github.com/jediproject/ng-jedi-breadcrumb): breadcrumb component that integrates with the AngularJs routing
+- [ng-jedi-i18n](https://github.com/jediproject/ng-jedi-i18n): internationalization component
+- [ng-jedi-layout](https://github.com/jediproject/ng-jedi-layout): layout components to be used with simple directives (Input, Datepicker, Modal, TreeView, Tooltip, Panel, etc)
