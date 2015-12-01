@@ -1,4 +1,4 @@
-#Develop Guide
+# Develop Guide
 
 1. [Using Jedi Components](#using-jedi-components)
     1. [Initial Configs](#initial-configs)
@@ -9,8 +9,8 @@
     1. [Creating Filters](#creating-filters)
 1. [HTML Guidelines](#html-guidelines)
 
-##Using Jedi Components
-###Initial Configs
+## Using Jedi Components
+### Initial Configs
 
 * CORS + Headers + Restangular
 ```javascript
@@ -140,7 +140,7 @@
 	    ]);
 	```
     
-###CRUD
+### CRUD
 
 * Controller
 ```javascript
@@ -269,7 +269,7 @@
 </form>
 ```
 
-###Creating Services
+### Creating Services
 ```javascript
 jd.factory.newService("yourService", 'api/myAction/:userId', {'get': {method: 'GET'}}, {itemId:'@id'});
 
@@ -280,7 +280,7 @@ app.controller(['yourService', function (yourService) {
 }]);
 ```
 
-###Creating Modals
+### Creating Modals
 
 Javascript: 
 ```javascript
@@ -298,7 +298,7 @@ HTML:
 <input your-modal-directive="onblur">
 ```
 
-###Creating Directives
+### Creating Directives
 ```javascript
 jd.factory.newDirective("yourDirective", [function () {
   return {
@@ -310,7 +310,7 @@ jd.factory.newDirective("yourDirective", [function () {
 }]);
 ```
 
-###Creating Filters
+### Creating Filters
 ```javascript
 jd.factory.newFilter('yourFilter', [function () {
   return function (values) {
@@ -319,7 +319,7 @@ jd.factory.newFilter('yourFilter', [function () {
 ]);
 ```
 
-###HTML Guidelines
+### HTML Guidelines
 
 * We use Twitter's [Bootstrap](http://getbootstrap.com/) in the project. Bootstraps works by always dividing the space in any html area in 12 columns and as many rows as needed. To avoid unplanned blank spaces try to always fill all the columns. 
 

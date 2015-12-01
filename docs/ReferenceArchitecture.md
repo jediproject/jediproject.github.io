@@ -1,5 +1,5 @@
  
-#AngularJs Reference Architecture
+# AngularJs Reference Architecture
 
 1. [Goals](#Goals)
 1. [Foundations](#Foundations)
@@ -31,23 +31,23 @@
     1. [Debugging](#Debugging)
 1. [Components](#Components)
 
-##<a name="Goals"></a>Goals
+## <a name="Goals"></a>Goals
 
 Provide guidance and recommendations on the tools, best practices, standards, constraints and solution design that can/should be used to develop an application SPA (Single Page Application) with angularjs.
 
-##<a name="Foundations"></a>Foundations
+## <a name="Foundations"></a>Foundations
 
 * Promoting productivity for projects
 * Standardize SPA applications
 * Facilitate the training of teams
 * Adoption of standards and market practices
 
-##<a name="Target"></a>Target
+## <a name="Target"></a>Target
 Mainly applications with AngularJS SPA, since it is more widespread, stable and evolving. Presented techniques can mostly be adopted in other frameworks SPA or even Web applications.
 
-##<a name="Overview"></a>Overview
+## <a name="Overview"></a>Overview
 
-###<a name="Traditional-Model"></a>Traditional Model
+### <a name="Traditional-Model"></a>Traditional Model
 
 ![Communication](../dist/img/Communication.png)
 
@@ -55,7 +55,7 @@ In this traditional model the navigation between pages, occurred in the browser,
 
 Frameworks like JSF, Spring MVC, ASP.NET MVC, django, Play, Rails, among others, use this building model.
 
-###<a name="SPA-Model"></a>SPA Model
+### <a name="SPA-Model"></a>SPA Model
 
 ![SPAModel](../dist/img/SPAModel.png)
 
@@ -68,7 +68,7 @@ This model basically consists of three core technologies:
 
 There are some frameworks that implements this model (Ember, knockout, Backbone.js, etc), but recommended, as stated above, is to use AngularJS.
 
-##<a name="Logic-View"></a>Logic View
+## <a name="Logic-View"></a>Logic View
 
 ![LogicStructure](../dist/img/LogicStructure.png)
 
@@ -76,7 +76,7 @@ In SPA applications the recommendation is the adoption of the above model, basic
 
 AngularJS already directs the construction for this MVC pattern and has components acting types in each of these layers.
 
-###<a name="Views"></a>Views
+### <a name="Views"></a>Views
 
 Layer where is the implementation of the canvas and visual components. In this layer we find the following AngularJS components/resources:
 
@@ -85,27 +85,27 @@ Layer where is the implementation of the canvas and visual components. In this l
 * Directives
 * Filters
 
-###<a name="Controllers"></a>Controllers
+### <a name="Controllers"></a>Controllers
 
 Layer where is the implementation of flow controllers and navigation between screens. In this layer we find the following AngularJS components/resources:
 
 * Controller
 * Router and Location
 
-###<a name="Services"></a>Services
+### <a name="Services"></a>Services
 Layer where is the implementation of services, with business rules (when there is no backend) or calls to the backend. In this layer we find the following AngularJS components/resources:
 
 * Service
 * Factory
 * Provider
 
-##<a name="Code-Structure"></a>Code Structure
+## <a name="Code-Structure"></a>Code Structure
 
 Following is the base organization proposed for SPA projects, based on industry standards and evolved with an increase of certain individual divisions.
 
 Base reference: https://scotch.io/tutorials/angularjs-best-practices-directory-structure
 
-###<a name="General-Resources"></a>General Resources
+### <a name="General-Resources"></a>General Resources
 
 ```
 assets --> external components or code implementation is not linked to SPA
@@ -119,7 +119,7 @@ assets/js --> JS files not AngularJS created/customized in the project
 
 This structure is used by several market components, for example, Twitter Bootstrap uses these folder paths on their CSS, to obtain images, fonts, etc.
 
-###<a name="Foundation-Structure"></a>Foundation Structure
+### <a name="Foundation-Structure"></a>Foundation Structure
 
 ```
 app --> SPA application components
@@ -142,7 +142,7 @@ app/common/features/auth/signup --> sign up screen
 	Route: /common/auth/signup
 ```
 
-###<a name="Module-Structure"></a>Module Structure
+### <a name="Module-Structure"></a>Module Structure
 
 ```
 app/[module]
@@ -167,9 +167,9 @@ The naming convention for folders and files is to use always lowercase. For js f
 
 For components written in AngularJS, is recommended that the name has concatenation module and submodule, such as a package / namespace to prevent overlapping component names in different modules.
 
-##<a name="Patterns-and-Restrictions"></a>Patterns and Restrictions
+## <a name="Patterns-and-Restrictions"></a>Patterns and Restrictions
 
-###<a name="General"></a>General
+### <a name="General"></a>General
 1. Always modify the scripts to support RequireJS, the module NodeJS or included directly in index.html. Ex.:
 ```javascript
 (function (factory) {
@@ -243,7 +243,7 @@ AlertHelper.addInfo(“Message”);
 
 1. API's request exception should be treated by interceptors available at [$httpProvider.interceptors](https://docs.angularjs.org/api/ng/service/$http#interceptors) component. Exceptions involving javascript failures should utilize [$exceptionHandler](https://docs.angularjs.org/api/ng/service/$exceptionHandler).
 
-###<a name="Controllers"></a>Controllers
+### <a name="Controllers"></a>Controllers
 
 1. Naming conventions:
   1. Physical folder: app/[**module**]/features/[**submodule/***]/[**feature**]/[**feature**]-ctrl.js
@@ -301,7 +301,7 @@ vm.featureModel = { name: null };
 vm.pageSize = 10;
 ```
 
-###<a name="Services"></a>Services
+### <a name="Services"></a>Services
 
 1. Naming conventions:
   - Physical Folder: app/[**module**]/features/[**submodule/***]/[**feature**]/[**feature**]-service.js
@@ -310,7 +310,7 @@ vm.pageSize = 10;
 1. If the service is only for abstract the API calls, use [$resources](https://docs.angularjs.org/api/ngResource/service/%24resource)ou [Restangular](https://github.com/mgonto/restangular), both abstract the CRUD operations in json object instances. With Restangular we can even call direct by controller instead of create an additional call, this approach is used in component [ng-jedi-factory](https://github.com/jediproject/ng-jedi-factory), allowing injection of a Restangular service for pre-defined URL references.
 1. Are singleton components, so avoid use business variables that could overlap in parallel streams.
 
-###<a name="Views"></a>Views
+### <a name="Views"></a>Views
 
 1. Naming conventions:
   - Physical folder: app/[**module**]/features/[**submodule/***]/[**feature**]/
@@ -332,7 +332,7 @@ ng-controller="app.framework.imports.importfiles.ImportFilesCtrl as importFilesC
 1. Css should be created/customized only in **assets/css/app.css** file, other css are third-party. Use the processor [SASS](http://sass-lang.com/) to generate a custom css.
 1. Navigation between pages should use [ngRoute](https://docs.angularjs.org/api/ngRoute) component.
 
-###<a name="Directives"></a>Directives
+### <a name="Directives"></a>Directives
 
 1. Directives should be always declared with the module and submodule names, to avoid duplicates.
 2. Naming Conventions:
@@ -344,7 +344,7 @@ ng-controller="app.framework.imports.importfiles.ImportFilesCtrl as importFilesC
     - Directive name: app-[**module**]-[**submodule/***]-[**feature**]-[**diretiva**]
 1. If you use some [jQuery](https://jquery.com/) plugin for render elements or add events, always treat those events on element's destroy scope, to remove the elements added by JQuery that are not controlled by AngularJS.
 
-###<a name="Filters"></a>Filters
+### <a name="Filters"></a>Filters
 
 1. Filters should be always declared with the module and submodule names, to avoid duplicates.
 1. Naming Conventions:
@@ -356,16 +356,16 @@ ng-controller="app.framework.imports.importfiles.ImportFilesCtrl as importFilesC
     - Directive name: app[**Module**][**Submodule**][**Feature**][**Filter**]
 1. Avoid nested filters, it could cause performance problems.
 
-##<a name="Recommended-Tools"></a>Recommended Tools
+## <a name="Recommended-Tools"></a>Recommended Tools
 
-###<a name="Dependency-Management"></a>Dependency Management - Bower vs NPM
+### <a name="Dependency-Management"></a>Dependency Management - Bower vs NPM
 
 1. [npm](https://www.npmjs.com/) is used as the default module manager of Node.js, meant to manage tools used support and automate development (builds, code generation, tasks and such). Is capable of generating front-end components if used with [Browserify](http://browserify.org/), but that's not encouraged because it mix web libs and backend together, and that can be messy.
   - The files from **node_modules** folder shouldn't be versioned, only the **package.json** file.
 1. [Bower](http://bower.io/) is designed especifically to manage front-end packages and optimized for that, being the recommended method for the web libs in the project.
   - The files from **bower_components** folder shouldn't be versioned, only the **bower.json** file.
 
-###<a name="Build-and-Deploy"></a>Build and Deploy
+### <a name="Build-and-Deploy"></a>Build and Deploy
 
 As a Task Runner tool we recomend using Grunt, as it is wildely used and has various plugins to solve many automatization problems.
 
@@ -395,7 +395,7 @@ To help deploying, there are a few plugins that can be used, but that ultimately
 
 In the develop environment, is recomended to use the NodeJs module http-server, that quickly starts a web server of static files, it has plugins to integrate with grunt. If a SASS processor is used, Compass Sprites and/or any other task that needs to run after any code change and before the browser access it, to execute tests on development, you can use the plugin [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch).
 
-###<a name="Automated-Tests"></a>Automated Tests
+### <a name="Automated-Tests"></a>Automated Tests
 
 There are two testing tools recommended on the Angularjs docs. They are:
 
@@ -404,7 +404,7 @@ There are two testing tools recommended on the Angularjs docs. They are:
 
 Both run a browser, load the files, execute tests and then return with the tests results.
 
-###<a name="Code-Generation"></a>Code Generation
+### <a name="Code-Generation"></a>Code Generation
 
 It is recommended that code generators are used as much as possible to reduce the time spent writting repetitive codes like:
 
@@ -417,7 +417,7 @@ It is recommended that code generators are used as much as possible to reduce th
 - It uses a set of other tools on its workflow, like [Grunt](http://gruntjs.com/) e [Gump](https://www.npmjs.com/package/gump) to build, [bower](http://bower.io/) and [npm](https://www.npmjs.com/) to manage packages
 - Is possible to use thirdy part generators, or even your own.
 
-###<a name="Mocks"></a>Mocks
+### <a name="Mocks"></a>Mocks
 
 API Mocks are usefull to separate front and back-end development, so both can occur simultaneously.
 
@@ -427,7 +427,7 @@ To quickly generate mocks with json-server use [json-server-init](https://www.np
 
 When it's necessary to have different responses based on input data a good alternative is to use the [apimocker](https://github.com/gstroup/apimocker).
 
-###<a name="Debugging"></a>Debugging
+### <a name="Debugging"></a>Debugging
 
 In order to be possible to debug the application, it's not recommended to minify, obfuscate or group the files to build in the develop environment.
 
@@ -435,7 +435,7 @@ Using the Google Chrome developer tools and Firebug (to Firefox) are recommended
 
 On top of that it is also recommended the use of [AngularJS Batarang](https://github.com/angular/batarang) to look at the scope and watch contexts of angular.
 
-##<a name="Components"></a>Components
+## <a name="Components"></a>Components
 
 The stack used in the [demo](https://github.com/jediproject/ng-jedi-demo) and [generator](https://github.com/jediproject/generator-jedi) Jedi:
 
