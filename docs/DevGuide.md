@@ -242,9 +242,9 @@
 	        </div>
 	        <div class="row">
 	            <div class="col-xs-12">
-	                <button class="btn btn-primary" ng-click="yourFeatureCtrl.filter()" jd-i18n>Filter</button>
-	                <button class="btn btn-info" ng-click="yourFeatureCtrl.clear()" jd-i18n>Clear</button>
-	                <button class="btn btn-info" ng-click="yourFeatureCtrl.openCreateModal()" jd-i18n>New</button>
+	                <button type="button" class="btn btn-primary" ng-click="yourFeatureCtrl.filter()" jd-i18n>Filter</button>
+	                <button type="button" class="btn btn-info" ng-click="yourFeatureCtrl.clear()" jd-i18n>Clear</button>
+	                <button type="button" class="btn btn-info" ng-click="yourFeatureCtrl.openCreateModal()" jd-i18n>New</button>
 	            </div>
 	        </div>
 	    </div>
@@ -481,7 +481,7 @@ Tip: The button with the main action on a page should have the *btn-primary* cla
 <div jd-input jd-label="LABEL" jd-element-class="input-group">
 	<input jd-validation-tooltip class="form-control" required type="text" ...>
 	<span class="input-group-btn">
-		<button jd-i18n title="Select" class="btn btn-warning" ...><i class=" glyphicon glyphicon-list-alt"></i></button>
+		<button type="button" jd-i18n title="Select" class="btn btn-warning" ...><i class=" glyphicon glyphicon-list-alt"></i></button>
 	</span>
 </div>
 ```
