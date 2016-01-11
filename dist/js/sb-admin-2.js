@@ -1,18 +1,7 @@
 $(function () {
-
     $('#side-menu').metisMenu();
-
-});
-/*
-$(function () {
-    $('#side-menu a').on('click', function (e) {
-        e.preventDefault();
-        var page = $(this).attr('href');
-        $('#content').load(page);
-    });
 });
 
-*/
 function openLink(event) {
     event.preventDefault();
     var href = $(this).attr('href');
@@ -36,7 +25,7 @@ function openLink(event) {
                     }
                 }
                 // qualquer link para componentes jedi serão abertos pelo openLink
-                $('#content').find("a[href*='jedi']").addClass('ajax').click(openLink).each(function () {
+                $('#content').find("a[href*='jedi']:not(h1 a)").addClass('ajax').click(openLink).each(function () {
                     if (this.href.indexOf('&') > -1) {
                         this.href = this.href.substring(this.href.indexOf('https://github'), this.href.indexOf('&'));
                     }
