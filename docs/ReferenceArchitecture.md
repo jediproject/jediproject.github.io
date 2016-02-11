@@ -284,7 +284,7 @@ AlertHelper.addInfo(“Message”);
   - Methods declarations and his statements
 ```javascript
  function loadSystems(success) {
-        console.log('Recovering systems');
+        $log.log('Recovering systems');
         SecurityRestService.all('admin/system').getList().then(success);
 }
 ```
@@ -391,7 +391,7 @@ In the build process it is fundamental to do the following:
 - "Concat" of images in one single image with css classes positioning in each image, estrategy known as Compass Sprites.
   - use the plugin [grunt-contrib-compass](https://github.com/gruntjs/grunt-contrib-compass)
 
-To help deploying, there are a few plugins that can be used, but that ultimately depends on the on the web server and how the files are goning to be transfered to it. There are plugins that works with frp connections, http post of files, and others. dentre outros.
+To help deploying, there are a few plugins that can be used, but that ultimately depends on the on the web server and how the files are goning to be transfered to it. There are plugins that works with ftp connections, http post of files, and others.
 
 In the develop environment, is recomended to use the NodeJs module http-server, that quickly starts a web server of static files, it has plugins to integrate with grunt. If a SASS processor is used, Compass Sprites and/or any other task that needs to run after any code change and before the browser access it, to execute tests on development, you can use the plugin [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch).
 
